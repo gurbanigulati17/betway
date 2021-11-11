@@ -1,0 +1,11 @@
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  padding: 10px;
+}
+
+.loaderSm svg {
+  background: transparent !important;
+}

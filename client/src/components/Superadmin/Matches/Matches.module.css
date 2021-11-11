@@ -1,0 +1,11 @@
+.nav{
+    display:grid;
+    grid-template-columns: 26% 14% 60%;
+    align-items:center;
+    margin: 10px;
+}
+@media(max-width:1000px){
+    .nav{
+        grid-template-columns: 70% 30%;
+    }
+}

@@ -1,0 +1,28 @@
+/* padding:'5px',display:'flex',justifyContent:'space-around' */
+
+.HelperLabel {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0 0 0 20px;
+  max-width: 550px;
+  list-style: disc;
+  overflow: hidden;
+  padding-top: 10px;
+}
+
+.HelperLabel li {
+  padding-left: 0;
+  width: 33.33%;
+  float: left;
+}
+
+@media screen and (max-width: 767px) {
+  .HelperLabel {
+    margin-bottom: 10px;
+  }
+
+  .HelperLabel li {
+    width: 50%;
+  }
+}

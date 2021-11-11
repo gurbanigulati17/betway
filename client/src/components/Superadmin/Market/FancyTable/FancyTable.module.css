@@ -1,0 +1,156 @@
+.dBlock {
+  display: block;
+}
+.dNone {
+  display: none;
+}
+.Fancy {
+  background-color: white;
+  margin-top: 20px;
+}
+.tableName {
+  height: 30px;
+  line-height: 30px;
+  color: #fff;
+  float: left;
+  font-weight: 700;
+  padding-right: 30px;
+  padding-left: 10px;
+  position: relative;
+  background: linear-gradient(180deg, #599ac0 27%, #0b84b8 83%);
+  border-top-right-radius: 15px;
+  font-size: 12px;
+}
+.headGrid {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.upperGrid {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  width: 100%;
+  text-align: center;
+  border-bottom: 0.5px solid rgb(175, 169, 169);
+}
+.yes {
+  background-color: skyblue;
+  padding: 4px 0;
+}
+.no {
+  background-color: pink;
+  padding: 4px 0;
+}
+.midGrid {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  width: 100%;
+  text-align: center;
+  border-bottom: 0.5px solid rgb(175, 169, 169);
+}
+.fancyName {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+}
+.textLeft {
+  text-align: left;
+}
+.textLeft div:first-child {
+  font-size: 14px;
+  font-weight: bold;
+  color: rgb(71, 50, 50);
+}
+@media (max-width: 700px) {
+  .textLeft div:first-child {
+    font-size: 13px;
+  }
+}
+.odds {
+  display: grid;
+  grid-template-columns: 25% 25% 50%;
+}
+.mobile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.textCenter {
+  text-align: center;
+}
+.back {
+  background-color: skyblue;
+}
+.lay {
+  background-color: pink;
+}
+.tiny {
+  font-size: 0.7em;
+}
+@media (min-width: 700px) {
+  .inc,
+  .dec {
+    display: none;
+  }
+}
+.weight {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 38px;
+  width: 70px;
+  padding: 0;
+  margin: 0 3px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+.weight span:first-child {
+  font-size: 0.9em;
+}
+.weight span:last-child {
+  font-size: 10px;
+}
+.bottomGrid {
+  padding-top: 0.3em;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto auto;
+  width: 100%;
+  font-size: 0.9em;
+}
+@media (max-width: 700px) {
+  .bottomGrid {
+    grid-template-columns: auto auto auto auto;
+  }
+}
+.bottomGrid button {
+  width: 80%;
+  background-color: rgb(241, 234, 234);
+  color: black;
+  padding: 2px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  font-size: 0.9em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bottomGrid button:hover {
+  background-color: rgb(238, 222, 222);
+}
+.activeBack {
+  background-color: #1a8ee1;
+  color: white;
+}
+.activeLay {
+  background-color: rgb(240, 112, 133);
+  color: white;
+}
+
+@media (max-width: 700px) {
+  .odds {
+    grid-template-columns: 50% 50%;
+  }
+  .mobile {
+    display: none;
+  }
+}

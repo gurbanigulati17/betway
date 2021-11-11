@@ -1,0 +1,9 @@
+FROM node:14.14.0-alpine
+WORKDIR /app
+COPY ["package.json", "package-lock.json*", "./"]
+RUN npm install
+ENV REACT_APP_KEY DxnR8XGXE8CFNRKnTdog9De7HRqHsSSZOrYQoOAaAxhFtMp23J
+ENV REACT_APP_API /api
+ENV REACT_APP_ODDS_API http://65.0.166.92:3200/api
+COPY . .
+CMD ["npm","run","start"]

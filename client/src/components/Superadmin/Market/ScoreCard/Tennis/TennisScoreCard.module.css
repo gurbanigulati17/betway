@@ -1,0 +1,55 @@
+.Scorecard{
+    box-shadow: 3px 5px 10px #888888;
+}
+.Head{
+    display: grid;
+    grid-template-columns: 35% 30% 35%;
+    font-weight: 700;
+}
+.Head div {
+    text-align: center;
+}
+.MatchName{
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    padding: 0.4em;
+    background: linear-gradient(180deg,rgb(105, 179, 9),#38ec56);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+.team1{
+    text-align: left;
+}
+.team2{
+    text-align: right;
+    margin: 0;
+}
+.score{
+    text-align: center;
+    margin: 0;
+}
+.Top{
+    margin: 0;
+    text-align: center;
+    font-size: x-small;
+}
+.set{
+    text-align:center;
+}
+.game{
+    text-align:center;
+}
+.matchTable{
+    width: 100%;
+}
+.matchData{
+    text-align: right;
+}
+.Scorecard{
+    color: rgb(105, 179, 9);
+    background: white;
+    padding: 0.5em; 
+    font-size: smaller; 
+    font-weight: 700;
+}

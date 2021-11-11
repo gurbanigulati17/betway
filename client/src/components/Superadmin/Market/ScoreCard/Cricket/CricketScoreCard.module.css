@@ -1,0 +1,41 @@
+.Scorecard {
+  box-shadow: 3px 5px 10px #888888;
+}
+.Head {
+  display: flex;
+  justify-content: space-between;
+  /* height: 30px;
+    line-height: 30px; */
+  color: white;
+  font-weight: 700;
+  padding: 0 30px 0 10px;
+  background: linear-gradient(180deg, rgb(105, 179, 9), #38ec56);
+  font-size: 14px;
+}
+@media (max-width: 700px) {
+  .Mobile {
+    display: none;
+  }
+}
+.Team {
+  display: flex;
+  justify-content: space-between;
+}
+.Team p {
+  text-align: left;
+}
+.ScoreBoard {
+  color: rgb(105, 179, 9);
+  position: relative;
+  font-weight: 700;
+  background: white;
+  font-size: 14px;
+  padding: 10px;
+}
+.ScoreBoardTable {
+  width: 100%;
+}
+.ScoreBoard tr td {
+  padding: 2px;
+  font-size: smaller;
+}

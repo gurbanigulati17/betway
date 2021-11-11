@@ -1,0 +1,242 @@
+import React, { Component } from "react";
+import axios from '../../../../../../../axios-instance/oddsApi';
+import classes from './CricketScoreCard.module.css'
+
+class CricketScoreCard extends Component {
+
+    //intervalID; flag = true;
+
+    state = {
+        sport: null,
+        score: null,
+        stateOFBall: null,
+        ball: [],
+        scorecard: false,
+        scoreId: '',
+        isMobile    : window.matchMedia("only screen and (max-width: 480px)").matches,
+        isTab       : window.matchMedia("only screen and (max-width: 767px)").matches,
+        playstreaming:true,  
+    }
+
+    calculateRunRate = (inning1, inning2) => {
+
+        let runs = 0, overs = 0;
+        if (inning1) {
+            runs = runs + parseFloat(inning1.runs)
+            overs = overs + Math.floor(inning1.overs) + (parseFloat(inning1.overs) - Math.floor(inning1.overs)) * 10 / 6
+        }
+        if (inning2) {
+            runs = runs + parseFloat(inning2.runs)
+            overs = overs + Math.floor(inning2.overs) + (parseFloat(inning2.overs) - Math.floor(inning2.overs)) * 10 / 6
+        }
+
+        return (runs / overs).toFixed(2)
+
+    }
+
+    calCulateRuns = (inning1, inning2) => {
+
+        let runs = 0
+        if (inning1) {
+            runs = runs + parseFloat(inning1.runs)
+        }
+        if (inning2) {
+            runs = runs + parseFloat(inning2.runs)
+        }
+
+        return parseFloat(runs)
+    }
+
+    getScore = () => {
+
+        const BASE_URL = 'ws://3.109.23.6:4600';
+        let sydwsc = new WebSocket(`${BASE_URL}/getScore/event/`+this.props.eventId);
+        sydwsc.onerror = (e) => {
+            console.log("Something Went Wrong!")
+        }
+        //let wsccounter = 0;
+        sydwsc.onmessage = (e) => {
+            let response = JSON.parse(e.data);
+            if (response.data.success) {
+                if (response.data.length) {
+                    this.setState({
+                        score: response.data[0].score,
+                        currentGame: response.data[0].currentGame,
+                        currentSet: response.data[0].currentSet,
+                        matchStatus: response.data[0].matchStatus,
+                        stateOFBall: response.data[0].stateOfBall ? response.data[0].stateOfBall : {}
+                    })
+                }
+                else {
+                    this.setState({
+                        score: null
+                    })
+                }
+            }
+
+        }
+    }
+    componentDidMount() {
+        this.getScore();
+        /*********************************/
+        // const BASE_URL = 'ws://3.109.23.6:4600';
+        // let sydwsc = new WebSocket(`${BASE_URL}/getScore/event/`+this.props.eventId);
+        // sydwsc.onerror = (e) => {
+        //     alert("Something Went Wrong!")
+        // }
+        // sydwsc.onmessage = (e) => {
+        //     let response = JSON.parse(e.data);
+        //     this.setState({ scoreId: response.scoreId, scorecard:true });
+        // }
+        fetch("http://173.249.21.26/SkyImporter/MatchImporter.svc/GetScoreId?eventid=" + this.props.eventId).then(response => {
+            return response.json();
+        }, "jsonp").then(res => {
+            this.setState({ scoreId: res.scoreId, scorecard:true });
+        }).catch(err => console.log(err))
+        /*********************************/
+    }
+    componentDidUpdate(previousProps, previousState) {
+
+        if (previousProps.eventId !== this.props.eventId) {
+            this.getScore()
+        }
+    }
+    componentWillUnmount() {
+        /*
+           stop getData() from continuing to run even
+           after unmounting this component. Notice we are calling
+           'clearTimeout()` here rather than `clearInterval()` as
+           in the previous example.
+         */
+        // if (this.intervalID) {
+        //     clearTimeout(this.intervalID);
+        //     this.flag = false;
+        // }
+
+        this.setState = (state, callback) => {
+            return;
+        };
+    
+    }
+
+streamingplay = () => {
+    this.setState({
+      playstreaming: this.state.playstreaming?false:true
+    });
+  };
+
+    render() {
+
+        const event = new Date(this.props.openDate);
+
+        let board = null, winner = null
+
+        if (this.state.score) {
+
+            if (this.calCulateRuns(this.state.score.home.inning1, this.state.score.home.inning2) > this.calCulateRuns(this.state.score.away.inning1, this.state.score.away.inning2)) {
+                winner = this.state.score.home.name
+            }
+            else {
+                winner = this.state.score.away.name
+            }
+            let homeRR = null, awayRR
+
+            if (this.state.score.home.highlight && this.state.score.home.inning1) {
+                homeRR = 'CRR: ' + this.calculateRunRate(this.state.score.home.inning1, this.state.score.home.inning2)
+            }
+            else if (this.state.score.home.inning1) {
+                homeRR = 'RR: ' + this.calculateRunRate(this.state.score.home.inning1, this.state.score.home.inning2)
+            }
+
+            if (this.state.score.away.highlight && this.state.score.away.inning1) {
+                awayRR = 'CRR: ' + this.calculateRunRate(this.state.score.away.inning1, this.state.score.away.inning2)
+            }
+            else if (this.state.score.away.inning1) {
+                awayRR = 'RR: ' + this.calculateRunRate(this.state.score.away.inning1, this.state.score.away.inning2)
+            }
+
+            board = <div className={classes.ScoreBoard}> <table className={classes.ScoreBoardTable}>
+
+                <tbody>
+                    <tr>
+                        <td style={{ fontWeight: this.state.score.home.highlight ? '700' : '100' }}>{this.state.score.home.name}</td>
+                        <td>{homeRR}</td>
+                        <td style={{ fontWeight: this.state.score.home.highlight ? '700' : '100' }}>
+
+                            {this.state.score.home.inning1 ?
+                                <span> {this.state.score.home.inning1.runs + '-' +
+                                    this.state.score.home.inning1.wickets + '(' +
+                                    this.state.score.home.inning1.overs + ') '}</span> :
+                                <span> Yet to bat </span>
+                            }
+                            {this.state.score.home.inning2 ? <span>
+                                {' & ' + this.state.score.home.inning2.runs + '-' +
+                                    this.state.score.home.inning2.wickets + '(' +
+                                    this.state.score.home.inning2.overs + ') '}</span> :
+                                null
+                            }
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style={{ fontWeight: this.state.score.away.highlight ? '700' : '100' }}>{this.state.score.away.name}</td>
+                        <td>{awayRR}</td>
+                        <td style={{ fontWeight: this.state.score.away.highlight ? '700' : '100' }}>
+
+                            {this.state.score.away.inning1 ?
+                                <span> {this.state.score.away.inning1.runs + '-' +
+                                    this.state.score.away.inning1.wickets + '(' +
+                                    this.state.score.away.inning1.overs + ') '}</span> :
+                                <span> Yet to bat </span>
+                            }
+                            {this.state.score.away.inning2 ? <span>
+                                {' & ' + this.state.score.away.inning2.runs + '-' +
+                                    this.state.score.away.inning2.wickets + '(' +
+                                    this.state.score.away.inning2.overs + ') '}</span> :
+                                null
+                            }
+
+                        </td>
+                    </tr>
+                    {
+                        this.state.matchStatus === 'InPlay' || this.state.matchStatus === 'Finished' ?
+                            <tr>
+                                <td>{this.state.matchStatus === 'Finished' ? null : 'OnStrike ' + this.state.stateOFBall.batsmanName}</td>
+                                {this.state.matchStatus === 'Finished' ? null :
+                                    <td style={{ fontSize: '2rem' }}>
+                                        {this.state.stateOFBall.dismissalTypeName === 'Not Out' ?
+                                            <span>{parseFloat(this.state.stateOFBall.batsmanRuns) + parseFloat(this.state.stateOFBall.wide) + parseFloat(this.state.stateOFBall.bye) + parseFloat(this.state.stateOFBall.legBye) + parseFloat(this.state.stateOFBall.noBall)} {parseFloat(this.state.stateOFBall.wide) ? <span style={{ fontSize: '1rem' }}>wd</span> : ''} {parseFloat(this.state.stateOFBall.noBall) ? <span style={{ fontSize: '1rem' }}> No ball</span> : ''}</span> :
+                                            <span style={{ fontSize: '1.5rem' }}>{this.state.stateOFBall.dismissalTypeName}</span>
+                                        }
+                                    </td>
+                                }
+                                {this.state.matchStatus === 'Finished' ? <td style={{ fontSize: '1.3rem', color: 'green' }}>{winner ? winner + ' won' : 'Draw'}</td> : null}
+                                <td>{this.state.matchStatus === 'Finished' ? null : 'Bowler ' + this.state.stateOFBall.bowlerName}</td>
+                            </tr> :
+                            <tr>
+                                <td></td>
+                                <td style={{ fontSize: '1.3rem', color: 'green' }}>{this.state.matchStatus}</td>
+                                <td></td>
+                            </tr>
+                    }
+                </tbody>
+            </table>
+            </div>
+        }
+
+        return (
+            <div className={classes.Scorecard}>
+                <div className={classes.Head}>
+                    <p className={classes.Subhead}>{this.props.eventName + '(' + event.toLocaleString('en-IN') + ')'}</p>
+                </div>
+                {board}
+                <div style={{ height: '100%', width: '100%', paddingTop: '0px', display: 'flex', marginBottom: '5px' }}>
+                {this.state.scorecard?<iframe allowfullscreen="true" style={{ border: 'none', width: '100%', height: '281px' }} src={`https://shivexch.com/sport_score_api/cricketscore/index.html?scoreId=${this.state.scoreId}&matchDate=${event.toLocaleString('en-IN')}`}></iframe>:''}
+                </div>
+                {this.state.isMobile && this.state.isTab && this.state.playstreaming? <iframe id="destination" src="https://livingstreamvdo.com?aHR0cHM6Ly93d3cuYmJiZ2FtZXMueHl6" style={{width: '100%', height: '300px'}} ></iframe>:null}
+            </div>
+        )
+    }
+}
+
+export default CricketScoreCard;

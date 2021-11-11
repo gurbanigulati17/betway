@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: server
+  template:
+    metadata:
+      labels:
+        component: server
+    spec:
+      containers:
+        - name: server
+          image: sayantan083/testingl-server
+          ports: 
+            - containerPort: 4000
+          env:
+            - name: DB_USERNAME
+              value: lord
+            - name: HOST
+              value: mysql-cluster-ip-service
+            - name: DB_PORT
+              value: "3306"
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                 name: dbpassword
+                 key: DB_PASSWORD
+            - name: DB_NAME
+              value: lords
+            - name: CACHE_HOST
+              value: redis-cluster-ip-service
+            - name: CACHE_PORT
+              value: "6379"
+            - name: SECRET
+              valueFrom:
+                secretKeyRef:
+                 name: secret
+                 key: SECRET

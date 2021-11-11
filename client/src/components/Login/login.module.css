@@ -1,0 +1,224 @@
+.loginContainer {
+  overflow: hidden;
+  margin: 0 auto;
+  border-radius: 15px;
+  position: absolute;
+  width: 90%;
+  max-width: 750px;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  right: 0;
+  background-color: rgba(38, 74, 93, 0.75);
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.loginContainerMini {
+  max-width: 450px;
+}
+
+.loginTitle {
+  padding-bottom: 5px;
+  border-radius: 15px 15px 0 0;
+  background-color: #4a4a4a;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 16px;
+  position: relative;
+  text-transform: uppercase;
+  width: 100%;
+  text-align: left;
+  width: 100%;
+  display: none;
+}
+
+.logo {
+  margin: 10px auto 40px;
+}
+
+.logo img {
+  display: block;
+  margin: 0 auto;
+}
+
+.logo span {
+  display: block;
+  font-family: "Lobster", cursive;
+  font-size: 50px;
+  color: #fff;
+  line-height: 1;
+  text-align: center;
+}
+
+.hr {
+  background-color: #e6e6e6;
+  background-image: linear-gradient(left, #264a5d 2%, #fff 50%, #264a5d 98%);
+  background-image: -o-linear-gradient(left, #264a5d 2%, #fff 50%, #264a5d 98%);
+  background-image: -moz-linear-gradient(
+    left,
+    #264a5d 2%,
+    #fff 50%,
+    #264a5d 98%
+  );
+  background-image: -webkit-linear-gradient(
+    left,
+    #264a5d 2%,
+    #fff 50%,
+    #264a5d 98%
+  );
+  background-image: -ms-linear-gradient(
+    left,
+    #264a5d 2%,
+    #fff 50%,
+    #264a5d 98%
+  );
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    right bottom,
+    color-stop(0.02, #264a5d),
+    color-stop(0.5, #fff),
+    color-stop(0.98, #264a5d)
+  );
+  height: 1px;
+  width: 60%;
+  margin: 10px auto;
+}
+
+.formcontent {
+  width: 50%;
+  padding: 20px;
+  border-top: 0;
+  color: #666;
+}
+
+.formcontentFull {
+  width: 100%;
+}
+
+.loginImage {
+  background-image: url("../../assets/images/banner3.jpg");
+  width: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.root {
+  height: 100vh;
+}
+
+.wrapper {
+  overflow: hidden;
+  height: 100%;
+}
+
+.slidingBackground {
+  background: url("../../assets/images/banner2.jpg");
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: left top;
+}
+
+.inputField {
+  display: block;
+  width: 100%;
+  height: 45px;
+  padding: 6px 12px 6px 35px;
+  border-radius: 25px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #d2d6de;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  outline: none;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+.inputField:focus {
+  border-color: #4a4a4a;
+}
+
+.formgroup {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.formgroup svg {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-size: 16px;
+  color: #000;
+}
+
+.button {
+  background-color: #fff;
+  border-color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  border-radius: 25px;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  border: 0;
+  width: 100%;
+  color: #4a4a4a;
+}
+
+/**
+**/
+.button {
+  background-color: #fff;
+  border-color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  border-radius: 25px;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  border: 0;
+  width: 100%;
+  color: #4a4a4a;
+}
+
+@media screen and (max-width: 767px) {
+  .formcontent {
+    width: 100%;
+  }
+
+  .loginImage {
+    display: none;
+  }
+
+  .slidingBackground {
+    background: url("../../assets/images/banner2.jpg") repeat-x;
+    height: 150%;
+    width: 200%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    top: -50%;
+    position: absolute;
+    left: -70%;
+  }
+}

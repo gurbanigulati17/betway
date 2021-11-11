@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        component: mysql
+    spec:
+      volumes:
+       - name: mysql-storage
+         persistentVolumeClaim:
+           claimName: database-persistent-volume-claim
+      containers:
+        - image: sayantan083/testingl-db
+          name: mysql
+          ports:
+            - containerPort: 3306
+              name: mysql
+          volumeMounts:
+            - name: mysql-storage
+              mountPath: /var/lib/mysql
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: dbpassword
+                  key: DB_PASSWORD
+            - name: MYSQL_DATABASE
+              value: lords
+            - name: MYSQL_USER
+              value: lord
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: dbpassword
+                  key: DB_PASSWORD

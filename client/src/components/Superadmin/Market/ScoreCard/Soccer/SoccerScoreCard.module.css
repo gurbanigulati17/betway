@@ -1,0 +1,59 @@
+.Scorecard{
+    box-shadow: 3px 5px 10px #888888;
+}
+.Head{
+    width: 100%;
+    text-align: center;
+}
+.row{
+    display: grid;
+    grid-template-columns: 38% 24% 38%;
+}
+.home{
+    text-align: center;
+    font-size: large;
+}
+.away{
+    text-align: center;
+    font-size: large;
+}
+.MatchName{
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    padding: 0.4em;
+    background: linear-gradient(180deg,rgb(105, 179, 9),#38ec56);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+.middle{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    color: rgb(105, 179, 9);
+    margin: 4px;
+}
+.center{  
+    font-size: x-small;
+    padding: 3px 0;
+}
+.row{
+    align-items: center;
+    background-color: white;
+    color: rgb(105, 179, 9);
+}
+.bottom{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: white;
+    color: rgb(105, 179, 9);
+    font-size: x-large;
+}
+.bottom hr{
+    border:1px solid rgb(105, 179, 9);
+    max-width: 100%;
+    margin: 0;
+}
+

@@ -1,0 +1,25 @@
+.display {
+  width: 100%;
+  background-color: #fcf8f9;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.borderdata {
+  border: 1px solid #b1adad;
+  background: #aaaaaa3b;
+  height: 35px;
+  text-align: center;
+  line-height: 35px;
+  font-size: 14px;
+}
+
+.borderdata:hover {
+  background: #aaaaaa3b;
+}
+
+@media (min-width: 1000px) {
+  .display {
+    display: none;
+  }
+}
