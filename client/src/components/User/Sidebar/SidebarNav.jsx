@@ -9,7 +9,7 @@ const isRouteActive = (pathname, item) => {
   }
 };
 
-const SidebarNav = ({ items, className = "" }) => {
+const SidebarNav = ({ items, className = "", isExtraVisible = false }) => {
   const [activeChild, setVisibility] = useState(null);
 
   const history = useHistory();
@@ -38,6 +38,13 @@ const SidebarNav = ({ items, className = "" }) => {
         const isActive =
           activeChild === menuItem.name || activeChild === menuItem.matchName;
 
+        if (
+          !isExtraVisible &&
+          (menuItem.type === "home" || menuItem.type === "inPlay")
+        ) {
+          return null;
+        }
+
         return (
           <li key={index.toString()}>
             {menuItem.href ? (
@@ -59,7 +66,7 @@ const SidebarNav = ({ items, className = "" }) => {
                 </span>
                 {!!menuItem?.items?.length && (
                   <span className="chevron">
-                    <i className="fa fa-chevron-left"></i>
+                    <i className="fa fa-chevron-right"></i>
                   </span>
                 )}
               </Link>
@@ -82,7 +89,7 @@ const SidebarNav = ({ items, className = "" }) => {
                 </span>
                 {!!menuItem?.items?.length && (
                   <span className="chevron">
-                    <i className="fa fa-chevron-left"></i>
+                    <i className="fa fa-chevron-right"></i>
                   </span>
                 )}
               </button>

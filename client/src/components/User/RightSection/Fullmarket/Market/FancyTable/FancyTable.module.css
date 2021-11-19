@@ -1,7 +1,6 @@
 .Exchange {
   margin-bottom: 20px;
-  border-bottom: solid 1px#CCC;
-  background: #fff;
+  border-top: 0;
 }
 
 .Exchange:empty {
@@ -9,13 +8,24 @@
 }
 
 .title {
-  font-weight: 600;
-  color: #53555b;
-  padding: 10px;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #f4f4f4;
+  border-bottom: 2px solid #0c92a5;
+}
+
+.box {
+  color: #fff;
+  font-weight: 700;
+  padding: 5px 40px 5px 10px;
+  position: relative;
+  background: #067e8f;
+  border-top-right-radius: 15px;
+  font-size: 12px;
+  display: inline-block;
+  position: relative;
+  margin-top: -2px;
 }
 
 .name {
@@ -24,7 +34,10 @@
 
 .betGrid {
   padding: 0;
-  border-bottom: 1px solid #f4f4f4;
+  border-left: 1px solid #c8ced3;
+  border-right: 1px solid #c8ced3;
+  border-top: 1px solid #7e97a7;
+  background: #fff;
 }
 
 .betGridAttributes {
@@ -34,16 +47,17 @@
 }
 
 .betNameWarpper {
-  padding: 8px;
+  padding: 5px;
   padding-right: 20px;
   width: calc(100% - 280px);
   position: relative;
 }
 
 .book {
-  position: absolute !important;
-  right: 15px;
-  bottom: 5px;
+  position: absolute;
+  right: 7px;
+  bottom: 7px;
+  font-weight: bold;
 }
 
 .backLayWrapper {
@@ -54,22 +68,28 @@
 .head {
   display: flex;
   justify-content: flex-end;
-  padding-right: 140px;
+  border-left: 1px solid #c8ced3;
+  border-right: 1px solid #c8ced3;
+  background-color: #fff;
 }
 
 .headTitle {
   text-transform: uppercase;
   font-size: 12px;
   color: #333;
-  border: 1px solid #fff;
   border-left: 0;
-  background-color: #ececed;
   font-weight: bold;
-  width: 70px;
-  padding: 5px;
-  min-height: 50px;
-  line-height: 3;
+  width: 85px;
+  padding: 8px;
   text-align: center;
+}
+
+.titleBack {
+  background-color: #faa9ba;
+}
+
+.titleLay {
+  background-color: #72bbef;
 }
 
 .suspended {
@@ -83,10 +103,9 @@
 }
 
 .element {
-  width: 70px;
+  width: 85px;
   text-align: center;
   padding: 5px;
-  border: 1px solid #ffffff;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -94,6 +113,13 @@
   flex-direction: column;
   cursor: pointer;
   transition: 0.25s ease all;
+}
+
+.maxMinTitle {
+  width: 110px;
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
 }
 
 .price {
@@ -105,30 +131,30 @@
 }
 
 .lay3 > div {
-  background-color: #fff5f7;
+  background-color: #f6e6ea;
 }
 
 .lay2 > div {
-  background-color: #ffe5ea;
+  background-color: #efd3d9;
 }
 
 .lay1 > div {
-  background-color: #ffcad5;
+  background-color: #faa9ba;
 }
 
 .activeLay {
 }
 
 .back3 > div {
-  background-color: #f1f9ff;
+  background-color: #d7e8f4;
 }
 
 .back2 > div {
-  background-color: #e4f2fc;
+  background-color: #b7d5eb;
 }
 
 .back1 > div {
-  background-color: #aedbfb;
+  background-color: #72bbef;
 }
 
 .activeBack {
@@ -148,7 +174,6 @@
   align-items: center;
   justify-content: center;
   padding: 10px;
-  background-color: #ececed;
 }
 
 .profitLoss span {
@@ -168,12 +193,20 @@
   background: rgba(255, 250, 250, 0.75) !important;
 }
 
+.infoWrapper {
+  position: absolute;
+  right: -5px;
+  top: 0;
+  bottom: 0;
+  padding: 5px 15px;
+  background: url("../../../../../../assets/bg-fanctbet_rules.svg") no-repeat;
+  background-size: cover;
+}
+
 .info {
-  font-size: 16px;
-  margin-right: 10px;
+  font-size: 14px;
   vertical-align: bottom;
   cursor: pointer;
-  color: #000;
 }
 
 @media screen and (max-width: 767px) {

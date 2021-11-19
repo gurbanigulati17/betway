@@ -1,14 +1,14 @@
 const theme = {
   font: {
-    family: '"Roboto Condensed", sans-serif',
-    size: "14",
-    sizeL: "16",
-    sizeSmall: "13",
+    family: "Tahoma, Helvetica, sans-serif",
+    size: "12",
+    sizeL: "14",
+    sizeSmall: "11",
     sizeXSmall: "10",
   },
   colors: {
-    primary: "#4a4a4a",
-    primaryDark: "#4a4a4a",
+    primary: "#315195",
+    primaryDark: "#14213D",
     text: "#242629",
     textMid: "#545454",
     textLight: "#FFFFFF",
@@ -16,7 +16,7 @@ const theme = {
     boxShadowDark: "#d0d2d4",
     black: "#000000",
   },
-  body: { bg: "#FFFFFF", size: 14 },
+  body: { bg: "#FFFFFF", size: 12 },
   borders: {
     grey: "#808080",
   },

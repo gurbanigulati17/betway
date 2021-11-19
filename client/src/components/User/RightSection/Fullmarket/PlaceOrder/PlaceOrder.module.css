@@ -1,18 +1,11 @@
 .placeOrder {
-  background: #fff;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  right: 0;
   margin: 0 auto;
   padding: 10px;
-  z-index: 10;
   overflow: hidden;
-  border-radius: 5px 5px 0 0;
-  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.05);
-  max-width: 500px;
-  z-index: 101;
+}
+
+.restrict {
+  pointer-events: none;
 }
 
 .placeBetOverlay {
@@ -51,11 +44,11 @@
 .orderQuantity button,
 .odds span {
   display: inline-block;
-  padding: 6px 12px;
+  padding: 11px 12px;
   margin-bottom: 0;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
-  line-height: 1.42857143;
+  line-height: 1;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
@@ -63,50 +56,55 @@
   cursor: pointer;
   user-select: none;
   background-image: none;
-  border: solid 1px #ddd;
-  background-color: #f4f4f4;
-  color: #444;
+  border: 1px solid #aaa;
+  background: linear-gradient(-180deg, #fff 0, #eee 89%);
+  color: #1f71ab;
 }
 
 .odds span {
   font-weight: bold;
+  color: #000;
 }
 
 .orderQuantity input {
-  height: 34px;
+  height: 40px;
   min-height: 34px;
-  font-size: 14px;
+  font-size: 16px;
   padding-right: 2px;
-  font-weight: 500;
+  font-weight: 700;
   padding-left: 1px;
   color: #000;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
   border-left: 0;
   border-right: 0;
-  text-align: right;
+  text-align: center;
 }
 
 .stakes {
   display: flex;
   padding: 10px 0;
+  flex-wrap: wrap;
+  margin-left: -5px;
+  margin-right: -5px;
 }
 
 .stakeElement {
-  flex: 1 1 auto;
+  flex: 1 0 33.33%;
+  padding: 0 5px;
 }
 
 .stakeElement button {
   height: 35px;
   text-align: center;
-  line-height: 35px;
-  font-weight: 700;
-  font-size: 15px;
-  background-color: #8dd2f0;
-  border: 1px solid #c8e3f7;
-  color: #001686;
+  font-size: 11px;
+  background: linear-gradient(-180deg, #fff 0, #eee 89%);
+  border: 1px solid #333;
+  color: #000;
   cursor: pointer;
   display: block;
+  border-radius: 4px;
+  margin-top: 5px;
   width: 100%;
 }
 
@@ -116,23 +114,44 @@
 
 .action {
   display: flex;
+  margin: 0 -5px;
 }
 
 .action > div {
   width: 50%;
+  padding: 0 5px;
 }
 
-.action button {
+.placeCancel button,
+.placeBet button {
+  text-align: center;
+  font-size: 11px;
+  font-weight: bold;
+  background: linear-gradient(-180deg, #fff 0, #eee 89%);
+  border: 1px solid #333;
+  color: #000;
+  cursor: pointer;
+  display: block;
+  border-radius: 4px;
   width: 100%;
-  padding: 10px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center;
+  height: 35px;
 }
 
-.action button:disabled,
-.inactiveBet {
+.placeBet button {
+  background: linear-gradient(-180deg, #315195 0%, #14213d 100%);
+  color: #fff;
+}
+
+.placeBet button:disabled {
   pointer-events: none;
-  opacity: 0.8;
-  background-color: #c5c3c3 !important;
+  background: #c5c3c3;
+  color: #e6dfcd;
+}
+
+.back {
+  background-color: #d7e8f4;
+}
+
+.lay {
+  background-color: #f6e6ea;
 }

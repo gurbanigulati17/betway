@@ -136,16 +136,13 @@ const Fancy = (props) => {
     fancyHead = (
       <>
         <div className={classes.title}>
-          <span style={{ marginRight: 8 }}>Fancy Bet</span>
-          <div className={classes.maxMin}>
-            <span onClick={toggleRules}>
+          <div className={classes.box}>
+            <span style={{ marginRight: 8 }}>Fancy Bet</span>
+            <span onClick={toggleRules} className={classes.infoWrapper}>
               <i className={`${classes.info} fa fa-info-circle`}></i>
             </span>
-            <span>Min/Max :- </span>
-            <span>{min + "/" + max}</span>
           </div>
         </div>
-
         <div className={classes.head}>
           <div className={[classes.headTitle, classes.titleBack].join(" ")}>
             No
@@ -153,6 +150,7 @@ const Fancy = (props) => {
           <div className={[classes.headTitle, classes.titleLay].join(" ")}>
             Yes
           </div>
+          <div className={[classes.maxMinTitle].join(" ")}>Min/Max</div>
         </div>
       </>
     );

@@ -351,7 +351,7 @@ const Market = (props) => {
   }
 
   if (allMarket.length == undefined) {
-    allMarket = <BetSpinner width="200px" />;
+    allMarket = <BetSpinner />;
   } else if (markets?.length === 0) {
     allMarket = null;
   }

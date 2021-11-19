@@ -26,25 +26,33 @@ const useStyles = makeStyles((theme) => ({
   head: {
     display: "flex",
     flexWrap: "wrap",
+    background: "#dddcd6",
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+  },
+  body: {
+    border: "1px solid #c8ced3",
   },
   match: {
-    width: "50%",
-    padding: "8px 10px",
-    fontSize: 14,
+    width: "70%",
+    padding: 3,
+    fontSize: 11,
     cursor: "pointer",
     fontFamily: appTheme.font.family,
     display: "flex",
     alignItems: "center",
-    [theme.breakpoints.down("md")]: {
+    [theme.breakpoints.down("sm")]: {
       width: "100%",
       border: "none",
       display: "none",
     },
+    lineHeight: 1,
   },
   tableCell: {
-    width: "16.66%",
-    padding: "8px 10px",
-    fontSize: 14,
+    width: "10%",
+    padding: 3,
+    fontSize: 12,
     cursor: "pointer",
     fontFamily: appTheme.font.family,
     fontWeight: "bold",
@@ -54,7 +62,9 @@ const useStyles = makeStyles((theme) => ({
       background: "#7a7a7a",
       borderRight: "solid 1px #FFF",
       color: "#FFF",
+      display: "none",
     },
+    lineHeight: 1,
   },
   eventTitle: {
     background: appTheme.colors.primary,
@@ -64,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
     border: 0,
     margin: 0,
     cursor: "pointer",
-    fontSize: 14,
+    fontSize: 12,
     padding: "1rem",
   },
 }));
@@ -189,7 +199,7 @@ const Event = (props) => {
       .filter((match) => match !== null);
 
     if (!allMatches.length) {
-      allMatches = <BetSpinner width="200px" />;
+      allMatches = <BetSpinner />;
     }
   } else {
     allMatches = (
@@ -202,13 +212,15 @@ const Event = (props) => {
   }
 
   return isLoading ? (
-    <BetSpinner style={{ height: "calc(100vh - 80px)" }} />
+    <BetSpinner />
   ) : (
     <div className={classes.eventWrapper}>
-      <h3 className={classes.eventTitle}>
-        <i class="fa fa-trophy"></i>
-        <span style={{ marginLeft: 10 }}>{sports[0].title}</span>
-      </h3>
+      {props.isTitle && (
+        <h3 className={classes.eventTitle}>
+          <i class="fa fa-trophy"></i>
+          <span style={{ marginLeft: 10 }}>{sports[0].title}</span>
+        </h3>
+      )}
       <TableContainer className={classes.root}>
         <Table>
           <TableHead>

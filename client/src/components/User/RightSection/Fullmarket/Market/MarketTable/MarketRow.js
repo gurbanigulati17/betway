@@ -274,6 +274,7 @@ const MarketRow = (props) => {
       stake={stake}
       setStakeManual={setStakeManual}
       isBetting={isBetting}
+      selection={selection}
     />
   );
 

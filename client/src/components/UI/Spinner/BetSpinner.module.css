@@ -1,11 +1,103 @@
-.loader {
+.loaderWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   background: #fff;
-  padding: 10px;
+  padding: 30px;
+  padding-left: 25px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 120px;
+  width: 120px;
+  border: solid 1px #ddd;
+  box-shadow: 0 2px 5px #d3d1d1;
+  border-radius: 3px;
+  z-index: 999;
 }
 
-.loaderSm svg {
-  background: transparent !important;
+.loader {
+  position: relative;
+}
+
+.loader div {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.loader div:nth-child(1) {
+  background: linear-gradient(#f60105 0, #801011 100%);
+  animation: loader 1s linear infinite;
+  animation-delay: -0.5s;
+}
+
+.loader div:nth-child(2) {
+  background: linear-gradient(-180deg, #315195 0%, #14213d 100%);
+  animation: loader 1s linear infinite;
+  animation-delay: 0s;
+}
+
+.loader div:nth-child(3) {
+  background: linear-gradient(#f60105 0, #801011 100%);
+  animation: loader-o 1s linear infinite;
+  animation-delay: -0.5s;
+}
+
+.loadingio-spinner-dual-ball-gp799tao18a {
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+  overflow: hidden;
+  background: rgba(NaN, NaN, NaN, 0);
+}
+
+.loader {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateZ(0) scale(1);
+  backface-visibility: hidden;
+  transform-origin: 0 0; /* see note above */
+}
+
+.loader div {
+  box-sizing: content-box;
+}
+
+.text {
+  margin-top: 50px;
+  color: #000;
+}
+
+@keyframes loader-o {
+  0% {
+    opacity: 1;
+    transform: translate(0 0);
+  }
+  49.99% {
+    opacity: 1;
+    transform: translate(40px, 0);
+  }
+  50% {
+    opacity: 0;
+    transform: translate(40px, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+}
+@keyframes loader {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(40px, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
 }

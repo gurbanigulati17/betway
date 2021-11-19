@@ -10,11 +10,14 @@ const EventRow = (props) => {
     row: {
       display: "flex",
       flexWrap: "wrap",
+      "&:hover": {
+        backgroundColor: "rgba(0,0,0,.075)",
+      },
     },
     match: {
-      width: "50%",
-      padding: "8px 10px",
-      fontSize: 14,
+      width: "70%",
+      padding: 3,
+      fontSize: 12,
       cursor: "pointer",
       fontFamily: appTheme.font.family,
       display: "flex",
@@ -23,44 +26,39 @@ const EventRow = (props) => {
       [theme.breakpoints.down("sm")]: {
         width: "100%",
         border: "none",
+        padding: "8px 10px",
+        fontSize: 16,
+        borderBottom: "1px solid rgba(224, 224, 224, 1)",
       },
     },
     tableCell: {
-      width: "16.66%",
-      padding: "8px 10px",
-      fontSize: 14,
+      width: "10%",
+      padding: 3,
+      fontSize: 12,
       cursor: "pointer",
       fontFamily: appTheme.font.family,
       [theme.breakpoints.down("sm")]: {
         width: "33.33%",
+        display: "none",
       },
     },
     Mname: {
       fontWeight: 700,
       lineHeight: 1.5,
-      "& svg": {
-        fontSize: 12,
-        marginRight: 8,
-      },
+      color: "#2789ce",
+      marginRight: 10,
     },
     startTime: {
-      fontSize: 11,
-      marginLeft: 5,
+      color: "#777",
+      fontSize: 12,
       lineHeight: 1,
     },
     attribute: {
-      display: "inline-block",
-      padding: "3px 5px",
-      fontSize: "75%",
       fontWeight: 700,
-      lineHeight: 1,
-      color: "#fff",
-      textAlign: "center",
-      whiteSpace: "nowrap",
-      verticalAlign: "baseline",
-      borderRadius: "0.25em",
-      backgroundColor: "#0089ff",
-      marginLeft: 10,
+      color: "#508d0e",
+      [theme.breakpoints.down("sm")]: {
+        fontSize: 12,
+      },
     },
     cell: {
       display: "flex",
@@ -69,17 +67,18 @@ const EventRow = (props) => {
       "& > div": {
         color: "#000",
         cursor: "pointer",
-        minHeight: 32,
-        lineHeight: "32px",
+        minHeight: 20,
+        lineHeight: "20px",
         width: "50%",
-        border: "1px solid #fff",
+        border: 0,
+        fontWeight: 700,
       },
     },
     blue: {
-      backgroundColor: "#8dd2f0",
+      backgroundColor: "#72bbef",
     },
     pink: {
-      backgroundColor: "#feafb2",
+      backgroundColor: "#faa9ba",
     },
     mobileMarker: {
       display: "none",
@@ -98,7 +97,6 @@ const EventRow = (props) => {
     <TableRow className={classes.row} onClick={redirectToMarket}>
       <TableCell className={classes.match}>
         <div className={classes.Mname}>
-          <i class="fa fa-asterisk"></i>
           <span>{props.name}</span>
         </div>
         {props.matchId === props.cupRate ? (
@@ -110,7 +108,7 @@ const EventRow = (props) => {
           <div className={classes.attribute}>In-Play</div>
         ) : (
           <div className={classes.startTime}>
-            - {eventDate.toLocaleString("en-IN")}
+            {eventDate.toLocaleString("en-IN")}
           </div>
         )}
       </TableCell>
@@ -142,7 +140,6 @@ const EventRow = (props) => {
       <TableRow className={classes.row} onClick={redirectToMarket}>
         <TableCell className={classes.match}>
           <div className={classes.Mname}>
-            <i class="fa fa-asterisk"></i>
             <span>{props.name}</span>
           </div>
           {props.matchId === props.cupRate ? (
@@ -154,7 +151,7 @@ const EventRow = (props) => {
             <div className={classes.attribute}>In-Play</div>
           ) : (
             <div className={classes.startTime}>
-              - {eventDate.toLocaleString("en-IN")}
+              {eventDate.toLocaleString("en-IN")}
             </div>
           )}
         </TableCell>

@@ -323,16 +323,14 @@ const FancyRow = (props) => {
           <div className={classes.profitLoss}>
             <span>{exposure ? "" + exposure.toFixed(2) : "0"}</span>
           </div>
-          <Button
-            variant="contained"
-            color="primary"
+          <button
             onClick={() => {
               props.showModal(props.id);
             }}
             className={`${classes.book} btn btn-primary`}
           >
             Book
-          </Button>
+          </button>
         </div>
         <div className={classes.backLayWrapper}>{value}</div>
       </div>

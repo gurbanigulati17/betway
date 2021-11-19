@@ -10,37 +10,17 @@ import withStyles from "../../../../styles";
 import axios from "../../../../axios-instance/backendAPI";
 
 import styles from "./styles";
+import SidebarNav from "../../Sidebar";
 
 const Header = ({ className, children }) => {
   const [user, setUser] = useState({});
   const [isAdmin, setIsAdmin] = useState(false);
   const [isMainMenuVisible, setMainMenuVisibility] = useState(false);
-  const [message, setMessage] = useState("");
   const updateBalance = useSelector((state) => state.update.balance);
-  const messageUpdate = useSelector((state) => state.update.message);
   const history = useHistory();
 
   const toggleMainMenuVisibility = () =>
     setMainMenuVisibility(!isMainMenuVisible);
-
-  const getMessage = () => {
-    axios
-      .get("/user/getMessage", {
-        headers: { Authorization: "Bearer " + localStorage.getItem("token") },
-      })
-      .then((response) => {
-        if (response.data.success) {
-          setMessage(response.data.message);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  useEffect(() => {
-    getMessage();
-  }, [messageUpdate]);
 
   useEffect(() => {
     history.listen(() => {
@@ -75,7 +55,6 @@ const Header = ({ className, children }) => {
             <img src={logo} alt="Lords Origional" width="130" />
           </Link>
         </div>
-
         <div className="nav-wrapper">
           <div className="menu-panel">
             <ul className="account-summary">
@@ -106,17 +85,19 @@ const Header = ({ className, children }) => {
             <div className="main-memu">
               <button
                 id="mainMenuTrigger"
-                className="main-menu-trigger"
+                className="btn btn-primary main-menu-trigger"
                 onClick={toggleMainMenuVisibility}
               >
-                <i className="fas fa-ellipsis-v"></i>
+                <i className="fas fa-user"></i>
+                <span>My Account</span>
+                <i className="fas fa-caret-down"></i>
               </button>
             </div>
           </div>
-          <div className="message">
-            <marquee speed={0.1}>{message}</marquee>
-          </div>
         </div>
+      </div>
+      <div className="site-header-bottom">
+        <SidebarNav isExtraVisible isTitled={false} themed="secondary" />
       </div>
       <div
         className={classnames("flyout-nav", {

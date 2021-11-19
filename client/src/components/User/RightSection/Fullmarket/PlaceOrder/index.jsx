@@ -21,6 +21,7 @@ const PlaceOrder = ({
   stake,
   setStakeManual,
   isBetting,
+  selection,
 }) => {
   const isAcceptBox = localStorage.getItem("token");
 
@@ -28,8 +29,12 @@ const PlaceOrder = ({
 
   return (
     <>
-      <div className={classes.placeOrder}>
-        <h3 className={classes.title}>Place order</h3>
+      {isBetting && <BetSpinner size="sm" style={{ marginLeft: 8 }} />}
+      <div
+        className={`${classes.placeOrder} ${
+          selection === "back" ? classes.back : classes.lay
+        } ${isBetting ? classes.restrict : ""}`}
+      >
         {isAcceptBox && (
           <div className={classes.acceptBox}>
             <label className={classes.accept} htmlFor="accept">
@@ -77,11 +82,11 @@ const PlaceOrder = ({
             );
           })}
         </div>
-        <Table setStakeTable={setStakeTable} backspace={backspace} />
+        {/* <Table setStakeTable={setStakeTable} backspace={backspace} /> */}
         <div className={classes.action}>
           <div className={classes.placeCancel}>
             <button
-              className={`${classes.cancel} btn btn-danger`}
+              className={classes.cancel}
               onClick={() => {
                 if (clearProfitLoss) {
                   clearProfitLoss();
@@ -97,18 +102,15 @@ const PlaceOrder = ({
             <button
               disabled={disabled}
               onClick={placeBet}
-              className={`${classes.place} btn btn-success ${
+              className={`${classes.place} ${
                 disabled ? classes.inactiveBet : ""
               }`}
             >
               <span>Place Bet</span>
-
-              {isBetting && <BetSpinner size="sm" style={{ marginLeft: 8 }} />}
             </button>
           </div>
         </div>
       </div>
-      <div className={classes.placeBetOverlay}></div>
     </>
   );
 };

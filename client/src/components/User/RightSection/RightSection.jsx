@@ -27,6 +27,9 @@ import ChipSummary from "./ChipSummary/ChipSummary";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../../store/actions/index";
 import UserActivity from "./UserList/Actions/UserActivity";
+import Slider from "../Slider";
+import Message from "../Message";
+import Account from "../RightSection/Accounts";
 
 const useStyles = makeStyles((theme) => ({
   contab: {
@@ -82,6 +85,8 @@ const RightSection = () => {
             <div className={classes.root}>
               <div className={classes.columns}>
                 <div className={classes.columnLeft}>
+                  <Message />
+                  <Slider />
                   <Dashboard />
                 </div>
                 <div className={classes.columnRight}>
@@ -110,6 +115,7 @@ const RightSection = () => {
           );
         }}
       />
+      <Route path="/account" component={Account} />
       <Route exact path="/fullmarket/:matchId" component={FullMarket} />
       <Route path="/blockMarket" component={BlockMarket} exact />
       <Route

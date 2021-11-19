@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Button } from "@material-ui/core";
 import classes from "./MarketTable.module.css";
 import MarketRow from "./MarketRow";
 import { useSelector } from "react-redux";
+import classnames from "classnames";
 
 import Rules from "../../../../../UI/Rules";
 
@@ -105,41 +105,43 @@ const MarketTable = (props) => {
   return (
     <div className={classes.Exchange}>
       <div className={classes.title}>
-        <div className={classes.box}>
-          <span style={{ marginRight: 8 }}>{props.name}</span>
-          {usertype === "5" ? null : (
-            <Button
-              variant="contained"
-              onClick={() => {
-                if (window.innerWidth < 1000) {
-                  const elem = document.getElementById("main");
-                  elem.scrollTo({
-                    top: elem.scrollHeight,
-                    left: 0,
-                    behavior: "smooth",
-                  });
-                }
-                props.changeFlag();
-                props.changeMarket(props.marketId, props.eventId);
-                toggleUpdateBook();
-              }}
-              size="small"
-              textSize="small"
-              className="btn btn-success"
-            >
-              View
-            </Button>
+        <div
+          className={classnames(
+            classes.box,
+            usertype !== "5" ? classes.extraMargin : ""
           )}
-        </div>
-        <div className={classes.maxMin}>
-          <span onClick={toggleRules}>
+        >
+          <span style={{ marginRight: 8 }}>{props.name}</span>
+          <span onClick={toggleRules} className={classes.infoWrapper}>
             <i className={`${classes.info} fa fa-info-circle`}></i>
           </span>
+        </div>
+        {usertype === "5" ? null : (
+          <button
+            className={classnames("btn btn-primary", classes.viewBtn)}
+            onClick={() => {
+              if (window.innerWidth < 1000) {
+                const elem = document.getElementById("main");
+                elem.scrollTo({
+                  top: elem.scrollHeight,
+                  left: 0,
+                  behavior: "smooth",
+                });
+              }
+              props.changeFlag();
+              props.changeMarket(props.marketId, props.eventId);
+              toggleUpdateBook();
+            }}
+          >
+            View
+          </button>
+        )}
+      </div>
+      <div className={classes.head}>
+        <div className={classes.maxMin}>
           <span>Min/Max :- </span>
           <span>{min + "/" + max}</span>
         </div>
-      </div>
-      <div className={classes.head}>
         <div className={[classes.headTitle, classes.titleBack].join(" ")}>
           Back
         </div>

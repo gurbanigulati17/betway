@@ -773,7 +773,7 @@ export default function ChildList() {
               ) : null
             ) : (
               <TableRow className={classes.loader}>
-                <BetSpinner width="150px" />
+                <BetSpinner />
               </TableRow>
             )}
             {stableSort(rows, getComparator(order, orderBy))

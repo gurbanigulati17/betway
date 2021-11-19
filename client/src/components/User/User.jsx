@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import Navigation from "./Navigation/Navigation";
 import RightSection from "./RightSection/RightSection";
 import Sidebar from "./Sidebar";
+import MobileNav from "../User/Navigation/MobileNav";
 import withStyles from "../../styles";
 
 import styles from "./User.styles";
@@ -24,9 +25,6 @@ const SidebarWithMobileTrigger = () => {
 
   return (
     <>
-      <button onClick={toggleSidebar} className="trigger-open">
-        <i className="fas fa-ellipsis-v"></i>
-      </button>
       <div
         className={classnames(
           "sidebar",
@@ -53,6 +51,7 @@ const LayOut = ({ className }) => {
           <RightSection />
         </main>
       </div>
+      <MobileNav />
     </div>
   );
 };

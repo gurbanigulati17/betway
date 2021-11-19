@@ -1,30 +1,27 @@
 export const sidebarItems = (username, usertype) => {
   return [
     {
-      title: "",
+      title: "Sports",
       type: "sports",
       items: [
-        { name: "All Games", href: "/dashboard", icon: "futbol" },
-        { name: "In Play", href: "/inplay", icon: "futbol" },
+        { name: "Home", href: "/dashboard", type: "home" },
+        { name: "In Play", href: "/inplay", type: "inPlay" },
         {
           type: "4",
           name: "Cricket",
           href: "",
-          icon: "futbol",
           items: [],
         },
         {
           type: "1",
           name: "Soccer",
           href: "",
-          icon: "futbol",
           items: [],
         },
         {
           type: "2",
           name: "Tennis",
           href: "",
-          icon: "futbol",
           items: [],
         },
       ],

@@ -61,17 +61,11 @@ export default function BetSlip(props) {
       overflow: "hidden",
       position: "relative",
       backgroundColor: appTheme.colors.textLight,
-      backgroundImage: `linear-gradient(
-        to right,
-        ${appTheme.colors.primaryDark},
-        ${appTheme.colors.primary},
-        ${appTheme.colors.primaryDark}
-      )`,
+      backgroundImage: "linear-gradient(-180deg, #2E4B5E 0%, #243A48 82%)",
       color: appTheme.colors.textLight,
       padding: 10,
       justifyContent: "space-between",
-      marginBottom: 10,
-      border: "solid 1px #ddd",
+      marginBottom: 0,
       textTransform: "uppercase",
     },
     root: {
@@ -110,10 +104,10 @@ export default function BetSlip(props) {
         backgroundColor: appTheme.colors.primaryDark,
       },
       "& .MuiTabs-flexContainer > button": {
-        backgroundColor: appTheme.colors.primaryDark,
+        background: "linear-gradient(#f60105 0,#801011 100%)",
         color: appTheme.colors.textLight,
-        borderRadius: "8px 8px 0 0",
-        border: "solid 1px #838181",
+        borderRadius: "0",
+        border: "none !important",
       },
       "& .MuiTabs-flexContainer > button.Mui-selected": {
         border: "solid 1px #DDDDDD",
