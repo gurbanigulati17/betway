@@ -1,6 +1,6 @@
 import { css } from "styled-components";
 import breakpoint from "styled-components-breakpoint";
-import { pxToRem, hexToRgbA } from "../../../../styles/utils";
+import { pxToRem } from "../../../../styles/utils";
 
 const desktopStyle = css``;
 
@@ -71,6 +71,85 @@ export default css`
         color: #fff;
         border: 1px solid transparent;
         border-radius: 0.25rem;
+      }
+    }
+  }
+
+  &.secondary {
+    padding: 0;
+    background: linear-gradient(#f60105 0, #801011 100%);
+    overflow: visible;
+
+    .logout {
+      display: none !important;
+    }
+
+    & > ul {
+      display: flex;
+
+      & > li {
+        position: relative;
+
+        & > .nav-link {
+          font-size: 13px;
+          padding: 10px;
+          display: flex;
+          border: 0;
+          border-right: 1px solid #797777;
+          list-style: none;
+          color: #fff;
+          font-weight: bold;
+          align-items: center;
+
+          &:hover {
+            color: #fff;
+            background-color: transparent;
+          }
+        }
+
+        .active {
+          color: #fff;
+          background-color: transparent;
+        }
+
+        .chevron {
+          margin-left: 10px;
+          border: 0;
+          padding: 0;
+          font-size: 13px;
+          font-weight: bold;
+          color: #fff;
+          background: none;
+
+          &:hover {
+            background: none;
+          }
+
+          svg {
+            transform: rotate(90deg);
+          }
+        }
+
+        &.active > ul {
+          display: block;
+          min-width: 200px;
+          border: solid 1px #ccc;
+          border-bottom: 0;
+        }
+      }
+
+      ul {
+        display: none;
+        position: absolute;
+        z-index: 10;
+        opacity: 1;
+        background: #fff;
+        max-height: 400px;
+        overflow: auto;
+
+        .nav-link {
+          padding: 10px;
+        }
       }
     }
   }

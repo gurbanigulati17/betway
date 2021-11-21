@@ -65,6 +65,11 @@ const tabBarConfig = (username, usertype) => {
       href: "/dashboard",
     },
     {
+      name: "In-Play",
+      type: "inplay",
+      href: "/inplay",
+    },
+    {
       name: "Users",
       type: "users",
       items: listuser,
