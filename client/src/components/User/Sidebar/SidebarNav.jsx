@@ -9,7 +9,7 @@ const isRouteActive = (pathname, item) => {
   }
 };
 
-const SidebarNav = ({ items, className = "", isExtraVisible = false }) => {
+const SidebarNav = ({ items, className = "" }) => {
   const [activeChild, setVisibility] = useState(null);
 
   const history = useHistory();
@@ -38,10 +38,7 @@ const SidebarNav = ({ items, className = "", isExtraVisible = false }) => {
         const isActive =
           activeChild === menuItem.name || activeChild === menuItem.matchName;
 
-        if (
-          !isExtraVisible &&
-          (menuItem.type === "home" || menuItem.type === "inPlay")
-        ) {
+        if (menuItem.type === "home" || menuItem.type === "inPlay") {
           return null;
         }
 

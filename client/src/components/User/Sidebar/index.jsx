@@ -9,12 +9,7 @@ import styles from "./styles";
 import { sidebarItems } from "./config";
 import SidebarNav from "./SidebarNav";
 
-const Sidebar = ({
-  className,
-  isTitled = true,
-  isExtraVisible = false,
-  themed,
-}) => {
+const Sidebar = ({ className, isTitled = true, themed }) => {
   const [menuListApi, setMenuListApi] = useState([]);
   const username = useSelector((state) => state.auth.username);
   const usertype = useSelector((state) => state.auth.usertype);
@@ -68,10 +63,7 @@ const Sidebar = ({
             {sidebarSection.title && isTitled && (
               <h3>{sidebarSection.title}</h3>
             )}
-            <SidebarNav
-              items={sidebarSection.items}
-              isExtraVisible={isExtraVisible}
-            />
+            <SidebarNav items={sidebarSection.items} />
           </div>
         );
       })}

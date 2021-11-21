@@ -23,7 +23,7 @@ const isRouteActive = (pathname, item) => {
   }
 };
 
-const MenuList = ({ menu, onLogout }) => {
+const MenuList = ({ menu, onLogout, themed }) => {
   const [isChildVisible, setChildVisibility] = useState([]);
   const history = useHistory();
   //assigning location variable
@@ -36,12 +36,23 @@ const MenuList = ({ menu, onLogout }) => {
   }, [history]);
 
   const toggleChild = (index) => {
-    const isExist = isChildVisible.includes(index);
-    if (isExist) {
-      const newItems = isChildVisible.filter((item) => item !== index);
-      setChildVisibility(newItems);
+    console.log(themed);
+    if (themed === "secondary") {
+      const isExist = isChildVisible.includes(index);
+      if (isExist) {
+        setChildVisibility([]);
+      } else {
+        setChildVisibility([index]);
+      }
     } else {
-      setChildVisibility([...isChildVisible, index]);
+      const isExist = isChildVisible.includes(index);
+
+      if (isExist) {
+        const newItems = isChildVisible.filter((item) => item !== index);
+        setChildVisibility(newItems);
+      } else {
+        setChildVisibility([...isChildVisible, index]);
+      }
     }
   };
 
@@ -95,7 +106,9 @@ const MenuList = ({ menu, onLogout }) => {
             )}
             {item.items &&
               item.items.length &&
-              isChildVisible.includes(index) && <MenuList menu={item.items} />}
+              isChildVisible.includes(index) && (
+                <MenuList menu={item.items} themed={themed} />
+              )}
           </li>
         );
       })}
@@ -113,7 +126,7 @@ const MenuList = ({ menu, onLogout }) => {
   );
 };
 
-const SimpleTabs = ({ className }) => {
+const SimpleTabs = ({ className, themed }) => {
   const [menuList, setMenuList] = useState([]);
   const username = useSelector((state) => state.auth.username);
   const usertype = useSelector((state) => state.auth.usertype);
@@ -129,8 +142,8 @@ const SimpleTabs = ({ className }) => {
   }, []);
 
   return (
-    <nav className={classnames("tab-bar", className)}>
-      <MenuList menu={menuList} onLogout={onLogout} />
+    <nav className={classnames("tab-bar", className, themed)}>
+      <MenuList menu={menuList} onLogout={onLogout} themed={themed} />
     </nav>
   );
 };

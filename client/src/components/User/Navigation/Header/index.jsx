@@ -10,7 +10,7 @@ import withStyles from "../../../../styles";
 import axios from "../../../../axios-instance/backendAPI";
 
 import styles from "./styles";
-import SidebarNav from "../../Sidebar";
+import TabBar from "../TabBar/TabBar";
 
 const Header = ({ className, children }) => {
   const [user, setUser] = useState({});
@@ -99,7 +99,7 @@ const Header = ({ className, children }) => {
         </div>
       </div>
       <div className="site-header-bottom">
-        <SidebarNav isExtraVisible isTitled={false} themed="secondary" />
+        <TabBar themed="secondary" />
       </div>
       <div
         className={classnames("flyout-nav", {

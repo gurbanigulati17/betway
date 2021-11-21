@@ -47,17 +47,19 @@ const App = () => {
   }, []);
 
   return (
-    <SplashScreen>
+    <>
       <GlobalStyle />
-      <BrowserRouter>
-        <Switch>
-          <Route path="/login" exact component={Login} />
-          <Route exact path="/superadmin/login" component={SuperadminLogin} />
-          <Route path="/superadmin" component={Superadmin} />
-          <Route path="/" component={Layout} />
-        </Switch>
-      </BrowserRouter>
-    </SplashScreen>
+      <SplashScreen>
+        <BrowserRouter>
+          <Switch>
+            <Route path="/login" exact component={Login} />
+            <Route exact path="/superadmin/login" component={SuperadminLogin} />
+            <Route path="/superadmin" component={Superadmin} />
+            <Route path="/" component={Layout} />
+          </Switch>
+        </BrowserRouter>
+      </SplashScreen>
+    </>
   );
 };
 
