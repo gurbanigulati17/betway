@@ -36,7 +36,7 @@ export default function ChangePassword() {
       });
   };
   return (
-    <>
+    <div className={classes.paper}>
       <div className={classes.helper}>Change Password</div>
       <div className={classes.changepass}>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -108,13 +108,13 @@ export default function ChangePassword() {
           <div className={classes.table}>
             <div className={classes.label}></div>
             <div className={classes.submit}>
-              <button type="submit" className="btn btn-danger">
+              <button type="submit" className="btn btn-primary">
                 Submit
               </button>
             </div>
           </div>
         </form>
       </div>
-    </>
+    </div>
   );
 }

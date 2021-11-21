@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import MarketTable from "./MarketTable/MarketTable";
 import axios from "../../../../../axios-instance/backendAPI";
-import odds_axios from "../../../../../axios-instance/oddsApi";
 import Fancy from "./FancyTable/FancyTable";
 import {
   Table,
@@ -273,13 +272,13 @@ const Market = (props) => {
       });
   };
 
-  let allMarket = <BetSpinner width="200px" />,
+  let allMarket = <BetSpinner />,
     scoreCard = null,
     fancyBook = null;
 
   if (book) {
     fancyBook = (
-      <TableContainer componenet={Paper} style={{ maxHeight: "400px" }}>
+      <TableContainer>
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -351,7 +350,7 @@ const Market = (props) => {
   }
 
   if (allMarket.length == undefined) {
-    allMarket = <BetSpinner width="200px" />;
+    allMarket = <BetSpinner />;
   } else if (markets?.length === 0) {
     allMarket = null;
   }
@@ -387,7 +386,7 @@ const Market = (props) => {
   if (matchInfo && matchInfo.sport === "4") {
     return (
       <div>
-        <Modal open={open} onClose={hideModal}>
+        <Modal open={open} onClose={hideModal} title="Book">
           {fancyBook}
         </Modal>
         {scoreCard}

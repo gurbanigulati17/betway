@@ -1,26 +1,38 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
-import {
-  TextField,
-  Radio,
-  RadioGroup,
-  FormControlLabel,
-  FormControl,
-  FormLabel,
-} from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
     flexWrap: "wrap",
+    alignItems: "center",
+    [theme.breakpoints.down("sm")]: {
+      display: "block",
+      width: "100%",
+    },
+  },
+  seperator: {
+    display: "inline-flex",
+    marginRight: 15,
+    marginBottom: 15,
+    fontWeight: 700,
+    fontSize: 14,
+    [theme.breakpoints.down("sm")]: {
+      marginRight: 0,
+      textAlign: "center",
+      width: "100%",
+      display: "block",
+    },
   },
   textField: {
-    marginLeft: 0,
-    marginRight: theme.spacing(2.5),
-    width: 240,
-    marginBottom: 20,
+    marginRight: 15,
+    [theme.breakpoints.down("sm")]: {
+      marginRight: 0,
+      width: "100%",
+    },
   },
   button: {
     marginTop: "10px",
@@ -68,51 +80,44 @@ export default function DateTime(props) {
 
   return (
     <>
-      <FormControl component="fieldset" className={classes.form}>
-        <FormLabel className={classes.heading}>{props.name}</FormLabel>
-        <RadioGroup
-          row
-          aria-label="gender"
-          name="gender1"
-          value={value}
-          onChange={handleChange}
-        >
-          {props.filter.map((obj) => {
-            return (
-              <FormControlLabel
-                value={obj.value}
-                control={<Radio />}
-                label={obj.label}
-                key={obj.value}
-              />
-            );
-          })}
-        </RadioGroup>
-      </FormControl>
       <div className={classes.container}>
         <TextField
           name="from"
-          label="From"
           type="datetime-local"
           InputLabelProps={{
             shrink: true,
           }}
           value={from}
           onChange={handleFromChange}
-          className={classes.textField}
+          className={`${classes.textField} formInputWrapper`}
         />
+        <span className={classes.seperator}>To</span>
         <TextField
           name="to"
-          label="To"
           type="datetime-local"
           InputLabelProps={{
             shrink: true,
           }}
           onChange={handleToChange}
           value={to}
-          className={classes.textField}
+          className={`${classes.textField} formInputWrapper`}
         />
       </div>
+      {!!props.filter?.length && (
+        <select
+          value={value}
+          onChange={handleChange}
+          className="formInputTheme"
+        >
+          {props.filter.map((obj) => {
+            return (
+              <option value={obj.value} key={obj.value}>
+                {obj.label}
+              </option>
+            );
+          })}
+        </select>
+      )}
     </>
   );
 }

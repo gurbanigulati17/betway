@@ -15,6 +15,8 @@ const GlobalStyle = createGlobalStyle`
     font-size: ${(props) => props.theme.body.size}px;
     background-color: ${(props) => props.theme.body.bg};
     line-height: 1.45;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
   }
 
   body,
@@ -34,83 +36,58 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .btn {
-    display: inline-block !important;
-    padding: 6px 12px !important; 
-    margin-bottom: 0 !important;
-    font-size: 14px !important;
-    font-weight: 400 !important;
-    line-height: 1.425 !important;
-    text-align: center !important;
-    white-space: nowrap !important;
-    vertical-align: middle !important;
-    touch-action: manipulation !important;
-    cursor: pointer !important;
-    user-select: none !important;
-    border-radius: 0 !important;
-    font-family: ${(props) => props.theme.font.family} !important;
+    display: inline-block;
+    padding: 6px 12px; 
+    margin-bottom: 0;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.25;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 0;
+    font-family: ${(props) => props.theme.font.family};
     box-shadow: none;
-    letter-spacing: 0 !important;
-    text-transform:none !important;
-    min-width: 1px !important;
-    border: 0 !important;
-  }
-
-  .btn-success {
-    color: #fff!important;
-    background-color: #5cb85c!important;
-    border-color: #4cae4c!important
-  }
-
-  .btn-success.active,.btn-success:active,.btn-success:focus,.btn-success:hover,.open .dropdown-toggle.btn-success {
-    color: #fff!important;
-    background-color: #47a447!important;
-    border-color: #398439!important;
-  }
-
-  .btn-success.active,.btn-success:active,.open .dropdown-toggle.btn-success {
-    background-image: none !important;
+    letter-spacing: 0;
+    text-transform:none;
+    min-width: 1px;
+    border: 0;
+    border-radius: 3px;
+    color: #FFF;
   }
 
   .btn-primary {
-    background-color: #4a4a4a !important;
-    border-color: #367fa9 !important;
+    background: #646f87; /* Old browsers */
+    background: -moz-linear-gradient(top,  #646f87 0%, #96a0b9 1%, #9aa5c0 2%, #4c5f8f 6%, #44588a 7%, #3d4d77 97%, #394971 98%, #212f4e 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #646f87 0%,#96a0b9 1%,#9aa5c0 2%,#4c5f8f 6%,#44588a 7%,#3d4d77 97%,#394971 98%,#212f4e 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #646f87 0%,#96a0b9 1%,#9aa5c0 2%,#4c5f8f 6%,#44588a 7%,#3d4d77 97%,#394971 98%,#212f4e 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#646f87', endColorstr='#212f4e',GradientType=0 ); /* IE6-9 */
+    border: solid 1px #0a1933;
+    color: #FFF;
   }
 
-  .btn-primary.hover,.btn-primary:active,.btn-primary:hover {
-    background-color: #367fa9 !important;
+  .btn-secondary {
+    margin: 0 auto;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    color: #1e1e1e;
+    font-weight: 700;
+    text-align: center;
   }
 
-  .btn-success.hover,.btn-success:active,.btn-success:hover {
-    background-color: #008d4c !important;
+  .btn-extra {
+    padding-left: 50px;
+    padding-right: 50px;
+    font-weight: bold;
   }
 
-  .btn-info {
-    color: #fff!important;
-    background-color: #00c0ef !important;
-    border-color: #00acd6 !important;
-  }
-
-  .btn-info.hover,.btn-info:active,.btn-info:hover {
-    background-color: #00acd6 !important;
-  }
-
-  .btn-danger {
-    color: #fff!important;
-    background-color: #dd4b39 !important;
-    border-color: #d73925 !important;
-  }
-
-  .btn-danger.hover,.btn-danger:active,.btn-danger:hover {
-    background-color: #d73925 !important;
-  }
-
-  .btn-warning {
-    background-color: #4a4a4a !important;
-    border-color: #4a4a4a !important;
-  }
-
-  .btn-warning.hover,.btn-warning:active,.btn-warning:hover {
-    background-color: #4a4a4a !important;
+  .btn-primary-transparent {
+    border: 1px solid #0b1933;
+    background: transparent;
+    box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 40%);
   }
 
   [class*="makeStyles-paper"] [class*="makeStyles-paper"] {
@@ -125,9 +102,11 @@ const GlobalStyle = createGlobalStyle`
 
   [class*="makeStyles-modal"] {
     .head {
-      color: #fff;
+      color: #243a48;
       padding: 10px;
-      background-color: #4a4a4a;
+      background-color: #eee;
+      font-size: 16px;
+      text-align: center;
     }
 
     .head h3 {
@@ -135,11 +114,11 @@ const GlobalStyle = createGlobalStyle`
     }
 
     .body {
-      padding: 8px;
+      padding: 20px;
       overflow: auto;
       box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 5px 8px 0px rgba(0,0,0,0.14),0px 1px 14px 0px rgba(0,0,0,0.12);
       max-height: 100%;
-      padding-bottom: 120px;
+      padding-bottom: 40px;
       background-color: #fff;
     }
 
@@ -151,8 +130,52 @@ const GlobalStyle = createGlobalStyle`
       padding: 15px;
       position: absolute;
       border-top: 1px solid #e5e5e5;
-      text-align: right;
+      text-align: center;
       background-color: #FFF;
+    }
+  }
+
+  .formInputTheme,
+  .formInputWrapper input {
+    width: auto !important;
+    min-width: 250px;
+    outline: 0 !important;
+    background-color: #FFF !important;
+    overflow: hidden;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    padding: 8px !important;
+    border: none !important;
+    color: #555 !important;
+    border-radius: 4px !important;
+    border: 1px solid #CCC !important;
+    font-size: 14px;
+    height: auto !important;
+    box-sizing: border-box !important;
+    letter-spacing:0 !important;
+    margin-bottom: 15px !important;
+  }
+
+  .formInputWrapper .MuiInput-formControl {
+    &:after,
+    &:before {
+      content: none;
+    }
+  }
+
+  @media screen and (max-width: 767px){
+    .formInputTheme,
+    .formInputWrapper input{
+      width: 100% !important;
+    }
+
+    [class*="makeStyles-modal-"] {
+      width: 90% !important;
+      height: 90% !important;
+      margin: 0 auto;
+      max-width: 100%;
+      margin-top: 5% !important;
+      border-radius: 8px !important;
     }
   }
 `;

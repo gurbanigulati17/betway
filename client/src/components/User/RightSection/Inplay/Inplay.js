@@ -17,7 +17,10 @@ import appTheme from "../../../../styles/theme";
 
 const useStyles = makeStyles((theme) => ({
   inplay: {
-    paddingBottom: 40,
+    paddingBottom: 0,
+    [theme.breakpoints.down("sm")]: {
+      paddingBottom: 0,
+    },
   },
   root: {
     overflow: "initial",
@@ -28,11 +31,18 @@ const useStyles = makeStyles((theme) => ({
   head: {
     display: "flex",
     flexWrap: "wrap",
+    background: "#dddcd6",
+    [theme.breakpoints.down("md")]: {
+      display: "none",
+    },
+  },
+  body: {
+    border: "1px solid #c8ced3",
   },
   match: {
-    width: "50%",
-    padding: "8px 10px",
-    fontSize: 14,
+    width: "70%",
+    padding: 3,
+    fontSize: 11,
     cursor: "pointer",
     fontFamily: appTheme.font.family,
     display: "flex",
@@ -42,11 +52,12 @@ const useStyles = makeStyles((theme) => ({
       border: "none",
       display: "none",
     },
+    lineHeight: 1,
   },
   tableCell: {
-    width: "16.66%",
-    padding: "8px 10px",
-    fontSize: 14,
+    width: "10%",
+    padding: 3,
+    fontSize: 12,
     cursor: "pointer",
     fontFamily: appTheme.font.family,
     fontWeight: "bold",
@@ -57,17 +68,28 @@ const useStyles = makeStyles((theme) => ({
       borderRight: "solid 1px #FFF",
       color: "#FFF",
     },
+    lineHeight: 1,
   },
   eventTitle: {
-    background: appTheme.colors.primary,
-    color: appTheme.colors.textLight,
-    textTransform: "uppercase",
+    background: "linear-gradient(-180deg, #2E4B5E 0%, #243A48 82%)",
+    color: "#fff",
+    fontSize: 14,
+    lineHeight: 1,
     fontWeight: 700,
-    border: 0,
+    padding: 10,
     margin: 0,
     cursor: "pointer",
-    fontSize: 14,
-    padding: "1rem",
+  },
+  noInPlay: {
+    padding: 50,
+    textAlign: "center",
+    bordeRadius: 5,
+    border: "dashed 5px #DDD",
+    width: "70%",
+    margin: "50px auto 0",
+    fontSize: 30,
+    fontWeight: "bold",
+    color: "#bdbdbd",
   },
 }));
 
@@ -187,16 +209,6 @@ const Inplay = (props) => {
         );
       });
 
-    if (!cricket.length) {
-      cricket = (
-        <TableRow>
-          <TableCell align="center" colSpan="4">
-            😢 No Inplay Cricket Matches
-          </TableCell>
-        </TableRow>
-      );
-    }
-
     soccer = matches
       .filter((match) => match.sport === "1")
       .map((match) => {
@@ -221,16 +233,6 @@ const Inplay = (props) => {
           />
         );
       });
-
-    if (!soccer.length) {
-      soccer = (
-        <TableRow>
-          <TableCell align="center" colSpan="4">
-            😢 No Inplay Soccer Matches
-          </TableCell>
-        </TableRow>
-      );
-    }
 
     tennis = matches
       .filter((match) => match.sport === "2")
@@ -257,130 +259,96 @@ const Inplay = (props) => {
         );
       });
 
-    if (!tennis.length) {
-      tennis = (
-        <TableRow>
-          <TableCell align="center" colSpan="4">
-            😢 No Inplay Tennis Matches
-          </TableCell>
-        </TableRow>
-      );
-    }
-
     allMatches = (
       <>
-        <div className={classes.eventWrapper}>
-          <h3 className={classes.eventTitle}>
-            <i class="fa fa-trophy"></i>
-            <span style={{ marginLeft: 10 }}>Cricket</span>
-          </h3>
-          <TableContainer className={classes.root}>
-            <Table>
-              <TableHead>
-                <TableRow className={classes.head}>
-                  <TableCell className={classes.match}></TableCell>
-                  <TableCell className={classes.tableCell}>1</TableCell>
-                  <TableCell className={classes.tableCell}>X</TableCell>
-                  <TableCell
-                    className={classes.tableCell}
-                    style={{ borderRight: 0 }}
-                  >
-                    2
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody className={classes.body}>{cricket}</TableBody>
-            </Table>
-          </TableContainer>
-        </div>
+        {cricket && !!cricket?.length && (
+          <div className={classes.eventWrapper}>
+            <h3 className={classes.eventTitle}>
+              <span>Cricket</span>
+            </h3>
+            <TableContainer className={classes.root}>
+              <Table>
+                <TableHead>
+                  <TableRow className={classes.head}>
+                    <TableCell className={classes.match}></TableCell>
+                    <TableCell className={classes.tableCell}>1</TableCell>
+                    <TableCell className={classes.tableCell}>X</TableCell>
+                    <TableCell
+                      className={classes.tableCell}
+                      style={{ borderRight: 0 }}
+                    >
+                      2
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody className={classes.body}>{cricket}</TableBody>
+              </Table>
+            </TableContainer>
+          </div>
+        )}
 
-        <div className={classes.eventWrapper}>
-          <h3 className={classes.eventTitle}>
-            <i class="fa fa-trophy"></i>
-            <span style={{ marginLeft: 10 }}>Soccer</span>
-          </h3>
-          <TableContainer className={classes.root}>
-            <Table>
-              <TableHead>
-                <TableRow className={classes.head}>
-                  <TableCell className={classes.match}></TableCell>
-                  <TableCell className={classes.tableCell}>1</TableCell>
-                  <TableCell className={classes.tableCell}>X</TableCell>
-                  <TableCell
-                    className={classes.tableCell}
-                    style={{ borderRight: 0 }}
-                  >
-                    2
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody className={classes.body}>{soccer}</TableBody>
-            </Table>
-          </TableContainer>
-        </div>
+        {soccer && !!soccer?.length && (
+          <div className={classes.eventWrapper}>
+            <h3 className={classes.eventTitle}>
+              <span>Soccer</span>
+            </h3>
+            <TableContainer className={classes.root}>
+              <Table>
+                <TableHead>
+                  <TableRow className={classes.head}>
+                    <TableCell className={classes.match}></TableCell>
+                    <TableCell className={classes.tableCell}>1</TableCell>
+                    <TableCell className={classes.tableCell}>X</TableCell>
+                    <TableCell
+                      className={classes.tableCell}
+                      style={{ borderRight: 0 }}
+                    >
+                      2
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody className={classes.body}>{soccer}</TableBody>
+              </Table>
+            </TableContainer>
+          </div>
+        )}
 
-        <div className={classes.eventWrapper}>
-          <h3 className={classes.eventTitle}>
-            <i class="fa fa-trophy"></i>
-            <span style={{ marginLeft: 10 }}>Tennis</span>
-          </h3>
-          <TableContainer className={classes.root}>
-            <Table>
-              <TableHead>
-                <TableRow className={classes.head}>
-                  <TableCell className={classes.match}></TableCell>
-                  <TableCell className={classes.tableCell}>1</TableCell>
-                  <TableCell className={classes.tableCell}>X</TableCell>
-                  <TableCell
-                    className={classes.tableCell}
-                    style={{ borderRight: 0 }}
-                  >
-                    2
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody className={classes.body}>{tennis}</TableBody>
-            </Table>
-          </TableContainer>
-        </div>
+        {tennis && !!tennis?.length && (
+          <div className={classes.eventWrapper}>
+            <h3 className={classes.eventTitle}>
+              <span>Tennis</span>
+            </h3>
+            <TableContainer className={classes.root}>
+              <Table>
+                <TableHead>
+                  <TableRow className={classes.head}>
+                    <TableCell className={classes.match}></TableCell>
+                    <TableCell className={classes.tableCell}>1</TableCell>
+                    <TableCell className={classes.tableCell}>X</TableCell>
+                    <TableCell
+                      className={classes.tableCell}
+                      style={{ borderRight: 0 }}
+                    >
+                      2
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody className={classes.body}>{tennis}</TableBody>
+              </Table>
+            </TableContainer>
+          </div>
+        )}
       </>
     );
   } else {
     allMatches = (
-      <TableContainer className={classes.root}>
-        <Table>
-          <TableHead>
-            <TableRow className={classes.head}>
-              <TableCell className={classes.match}></TableCell>
-              <TableCell className={classes.tableCell}>1</TableCell>
-              <TableCell className={classes.tableCell}>X</TableCell>
-              <TableCell
-                className={classes.tableCell}
-                style={{ borderRight: 0 }}
-              >
-                2
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody className={classes.body}>
-            <TableRow>
-              <TableCell align="center" colSpan="4">
-                😢 No Inplay Matches found
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <div className={classes.noInPlay}>No Inplay Matches found</div>
     );
   }
 
   return (
     <div className={classes.inplay}>
-      {isLoading ? (
-        <BetSpinner style={{ height: "calc(100vh - 80px)" }} />
-      ) : (
-        allMatches
-      )}
+      {isLoading ? <BetSpinner /> : allMatches}
     </div>
   );
 };

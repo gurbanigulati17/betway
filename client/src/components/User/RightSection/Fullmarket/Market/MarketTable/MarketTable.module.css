@@ -1,17 +1,29 @@
 .Exchange {
   margin-bottom: 20px;
-  border-bottom: solid 1px#CCC;
+  border: 1px solid #c8ced3;
+  border-bottom: 1px solid #7e97a7;
   background: #fff;
 }
 
 .title {
-  font-weight: 600;
-  color: #53555b;
-  padding: 10px;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #f4f4f4;
+  border-bottom: 1px solid #7e97a7;
+}
+
+.box {
+  color: #fff;
+  font-weight: 700;
+  padding: 5px 30px 5px 10px;
+  position: relative;
+  background: linear-gradient(180deg, #2a3a43 27%, #1c282d 83%);
+  border-top-right-radius: 15px;
+  font-size: 12px;
+  display: inline-block;
+  position: relative;
+  margin-top: -2px;
 }
 
 .name {
@@ -20,7 +32,8 @@
 
 .betGrid {
   padding: 0;
-  border-bottom: 1px solid #f4f4f4;
+  border-top: 1px solid #7e97a7;
+  position: relative;
 }
 
 .betGridAttributes {
@@ -30,35 +43,40 @@
 }
 
 .betNameWarpper {
-  padding: 8px;
+  padding: 5px;
   padding-right: 20px;
-  width: calc(100% - 420px);
+  width: calc(100% - 510px);
 }
 
 .backLayWrapper {
   display: flex;
-  width: 420px;
+  width: 510px;
 }
 
 .head {
   display: flex;
   justify-content: flex-end;
-  padding-right: 140px;
 }
 
 .headTitle {
   text-transform: uppercase;
   font-size: 12px;
   color: #333;
-  border: 1px solid #fff;
   border-left: 0;
-  background-color: #ececed;
   font-weight: bold;
-  width: 70px;
-  padding: 5px;
-  min-height: 50px;
-  line-height: 3;
+  width: 85px;
+  padding: 8px;
   text-align: center;
+}
+
+.titleBack {
+  background-color: #72bbef;
+  border-radius: 10px 0 0 0;
+}
+
+.titleLay {
+  background-color: #faa9ba;
+  border-radius: 0 10px 0 0;
 }
 
 .suspended {
@@ -72,10 +90,9 @@
 }
 
 .element {
-  width: 70px;
+  width: 85px;
   text-align: center;
   padding: 5px;
-  border: 1px solid #ffffff;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -83,6 +100,20 @@
   flex-direction: column;
   cursor: pointer;
   transition: 0.25s ease all;
+}
+
+.viewBtn {
+  margin: 5px !important;
+}
+
+.extraMargin {
+  padding-top: 11px;
+  padding-bottom: 12px;
+  margin: 0;
+}
+
+.extraMargin .info {
+  top: 12px;
 }
 
 .price {
@@ -94,37 +125,47 @@
 }
 
 .lay3 > div {
-  background-color: #fff5f7;
+  background-color: #f6e6ea;
 }
 
 .lay2 > div {
-  background-color: #ffe5ea;
+  background-color: #efd3d9;
 }
 
 .lay1 > div {
-  background-color: #ffcad5;
+  background-color: #faa9ba;
 }
 
 .activeLay {
 }
 
 .back3 > div {
-  background-color: #f1f9ff;
+  background-color: #d7e8f4;
 }
 
 .back2 > div {
-  background-color: #e4f2fc;
+  background-color: #b7d5eb;
 }
 
 .back1 > div {
-  background-color: #aedbfb;
+  background-color: #72bbef;
 }
 
 .activeBack {
 }
 
 .maxMin {
-  font-size: 11px;
+  padding: 5px;
+  margin: 0;
+  background-color: #bed5d8;
+  font-size: 10px;
+  line-height: 1;
+  border-radius: 3px;
+  width: 156px;
+  margin: 7px;
+  text-align: center;
+  font-weight: bold;
+  order: 3;
 }
 
 .maxMin span:last-child {
@@ -149,29 +190,32 @@
 }
 
 .info {
-  font-size: 16px;
-  margin-right: 10px;
+  font-size: 14px;
+  margin-left: 8px;
   vertical-align: bottom;
   cursor: pointer;
-  color: #000;
+  position: absolute;
+  right: 10px;
+  top: 7px;
 }
 
 @media screen and (max-width: 767px) {
-  .title {
-    padding: 10px;
-  }
-
   .head {
     padding-right: 0;
     margin-bottom: 0;
   }
 
-  .betNameWarpper {
-    width: calc(100% - 140px);
+  .betNameWarpper,
+  .maxMin {
+    width: calc(100% - 132px);
   }
 
   .backLayWrapper {
-    width: 140px;
+    width: 120px;
+  }
+
+  .maxMin {
+    order: 0;
   }
 
   .back2,
@@ -179,5 +223,15 @@
   .lay2,
   .lay3 {
     display: none;
+  }
+
+  .element,
+  .headTitle {
+    width: 60px;
+    border-radius: 0 !important;
+  }
+
+  .size {
+    font-size: 11px;
   }
 }

@@ -6,23 +6,12 @@ const desktopStyle = css`
   z-index: 120;
 
   .site-header-wrapper {
-    display: flex;
-    align-items: center;
+    min-height: ${pxToRem(60)};
+    padding: 0;
   }
 
   .logo {
     width: ${pxToRem(240)};
-  }
-
-  .message {
-    padding: ${pxToRem(10)} ${pxToRem(25)};
-    background-color: ${(props) => hexToRgbA(props.theme.colors.primary)};
-    width: 75%;
-    margin-top: 0;
-
-    a {
-      display: none;
-    }
   }
 
   .logo {
@@ -31,25 +20,41 @@ const desktopStyle = css`
     padding: 0;
   }
 
-  .flyout-nav {
-    padding-top: ${pxToRem(60)};
-  }
-
   .nav-wrapper {
     display: flex;
     width: calc(100% - ${pxToRem(240)});
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
   }
 
   .menu-panel {
     display: flex;
     order: 2;
+    padding-right: 20px;
   }
 
   .main-memu {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
     position: relative;
-    bottom: 0;
+  }
+
+  .betBtn {
+    display: none;
+  }
+
+  .account-summary {
+    flex-direction: row;
+    align-items: center;
+
+    li {
+      margin: 0 15px 0 0;
+    }
+  }
+
+  .site-header-bottom {
+    display: block;
   }
 `;
 
@@ -59,26 +64,25 @@ export default css`
   z-index: 20;
   top: 0;
   left: 0;
-  font-size: ${pxToRem(14)};
   top: 0;
 
   .site-header-wrapper {
+    display: flex;
+    align-items: center;
     background: linear-gradient(
-      to right,
-      ${(props) => props.theme.colors.primaryDark},
-      ${(props) => props.theme.colors.primary},
-      ${(props) => props.theme.colors.primaryDark}
+      -180deg,
+      ${(props) => props.theme.colors.primary} 0%,
+      ${(props) => props.theme.colors.primaryDark} 100%
     );
     color: ${(props) => props.theme.colors.textLight};
-    padding: 0;
-    min-height: ${pxToRem(60)};
+    padding: 8px 10px;
     position: relative;
     z-index: 10;
+    justify-content: space-between;
   }
 
   .logo {
     text-align: center;
-    width: 100%;
     padding: ${pxToRem(5)} 0;
 
     a,
@@ -89,73 +93,72 @@ export default css`
   }
 
   .main-menu-trigger {
-    padding: 20px;
-    margin: 0;
-    background: none;
-    border: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
     color: #fff;
-    z-index: 2;
+    display: flex;
+    align-items: center;
+    border-radius: 3px;
+
+    span {
+      margin: 0 5px;
+    }
   }
 
   .main-memu {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    position: absolute;
-    right: 0;
-    left: auto;
-    top: auto;
-    bottom: 0px;
-    bottom: -6px;
-    outline: none;
-  }
-
-  .account-summary {
-    display: flex;
+    display: none;
   }
 
   .username {
-    text-align: center;
-    padding: 15px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: 1px solid #333;
+    padding: 5px 10px;
+    display: block;
+    margin-bottom: 0;
+    font-size: 0.765625rem;
+    color: #333;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: #b8c7ce;
+    font-weight: bold;
+    background-color: #e4e7ea;
   }
 
   .flyout-nav {
-    background: #53555b;
-    color: ${(props) => props.theme.colors.textLight};
-    position: fixed;
-    overflow: auto;
-    z-index: 5;
-    transition: all 0.25s ease 0s;
-    width: ${pxToRem(230)};
-    right: -230px;
-    top: 0;
-    bottom: 0;
-    left: auto;
-    padding-top: ${pxToRem(105)};
+    position: absolute;
+    top: 46px;
+    z-index: 1000;
+    width: 230px;
+    padding: 0;
+    margin: 0.125rem 0 0;
+    font-size: 0.875rem;
+    color: #23282c;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #c8ced3;
+    border-radius: 0.25rem;
+    right: 20px;
+    transform: translateY(20px);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.25s ease all;
 
     &.show {
-      right: 0;
+      transform: translateY(0px);
+      opacity: 1;
+      visibility: visible;
     }
   }
 
   .account-summary {
     padding: 0;
     margin: 0;
-    align-items: center;
+    align-items: end;
     list-style: none;
     justify-content: center;
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
 
-    li {
-      margin: 0 15px;
+    .exposure {
+      color: #d0021b;
     }
   }
 
@@ -207,29 +210,8 @@ export default css`
     }
   }
 
-  .message {
-    padding: ${pxToRem(10)} ${pxToRem(40)};
-    background-color: #343131;
-    font-size: ${pxToRem(14)};
-    position: relative;
-    width: 100%;
-    margin-top: 5px;
-
-    a {
-      position: absolute;
-      left: 0;
-      padding: ${pxToRem(2)} ${pxToRem(10)};
-      top: 0;
-      font-size: ${pxToRem(25)};
-      color: ${(props) => props.theme.colors.textLight};
-      background-color: ${(props) => hexToRgbA(props.theme.colors.text)};
-      display: block;
-      z-index: 2;
-    }
-
-    marquee {
-      display: block;
-    }
+  .site-header-bottom {
+    display: none;
   }
 
   ${breakpoint("md")`

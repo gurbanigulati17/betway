@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import classes from "./FancyTable.module.css";
-import axios from "../../../../../../axios-instance/oddsApi";
 import back_axios from "../../../../../../axios-instance/backendAPI";
 import FancyRow from "./FancyRow";
 import { useSelector } from "react-redux";
@@ -136,17 +135,21 @@ const Fancy = (props) => {
     fancyHead = (
       <>
         <div className={classes.title}>
-          <span style={{ marginRight: 8 }}>Fancy Bet</span>
-          <div className={classes.maxMin}>
-            <span onClick={toggleRules}>
+          <div className={classes.box}>
+            <span style={{ marginRight: 8 }}>Fancy Bet</span>
+            <span onClick={toggleRules} className={classes.infoWrapper}>
               <i className={`${classes.info} fa fa-info-circle`}></i>
             </span>
+          </div>
+        </div>
+        <div className={classes.head}>
+          <div className={`${classes.maxMin} ${classes.maxMinDesktop}`}>
+            Min/Max
+          </div>
+          <div className={`${classes.maxMin} ${classes.maxMinMobile}`}>
             <span>Min/Max :- </span>
             <span>{min + "/" + max}</span>
           </div>
-        </div>
-
-        <div className={classes.head}>
           <div className={[classes.headTitle, classes.titleBack].join(" ")}>
             No
           </div>
@@ -188,7 +191,13 @@ const Fancy = (props) => {
     <div className={classes.Exchange}>
       {fancyHead}
       {fancyRow}
-      {isRulesVisible && <Rules open={isRulesVisible} onClose={toggleRules} />}
+      {isRulesVisible && (
+        <Rules
+          open={isRulesVisible}
+          onClose={toggleRules}
+          sportId={props.sport}
+        />
+      )}
     </div>
   );
 };

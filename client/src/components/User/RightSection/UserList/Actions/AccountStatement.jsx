@@ -16,7 +16,7 @@ import { useLocation } from "react-router-dom";
 import moment from "moment";
 import BetHistory from "../../BetHistory/BetHistory";
 
-import appTheme from "../../../../../styles/theme";
+import { sectionStyle } from "../../../../../utils/common.style";
 
 const columns = [
   {
@@ -176,100 +176,115 @@ export default function AccountStatement() {
   ];
 
   let table = (
-    <Paper className={classes.paper}>
-      <div className={classes.titlePanel}>
-        <span className={classes.title}>Account summary</span>
+    <>
+      <div className={classes.card}>
+        <DateTime
+          onSubmit={onSubmit}
+          filter={filter}
+          dateCache={dateCache}
+          userInfo={userInfo}
+        />
       </div>
-      <DateTime
-        onSubmit={onSubmit}
-        filter={filter}
-        dateCache={dateCache}
-        userInfo={userInfo}
-      />
-      <TableContainer className={classes.container}>
-        <Table stickyHeader aria-label="sticky table" className={classes.table}>
-          <TableHead>
-            <TableRow>
-              <TableCell align="center" className={classes.head}>
-                S.No.
-              </TableCell>
-              {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}
-                  className={classes.head}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {!rows?.length ? (
+      <Paper className={classes.paper}>
+        <div className={classes.titlePanel}>
+          <span className={classes.title}>Account summary</span>
+        </div>
+        <TableContainer className={classes.container}>
+          <Table
+            stickyHeader
+            aria-label="sticky table"
+            className={classes.table}
+          >
+            <TableHead>
               <TableRow>
-                <TableCell colSpan="6">No data</TableCell>
+                <TableCell align="center" className={classes.head}>
+                  S.No.
+                </TableCell>
+                {columns.map((column) => (
+                  <TableCell
+                    key={column.id}
+                    align={column.align}
+                    style={{ minWidth: column.minWidth }}
+                    className={classes.head}
+                  >
+                    {column.label}
+                  </TableCell>
+                ))}
               </TableRow>
-            ) : null}
-            {rows
-              ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row, index) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={index + 1}>
-                    <TableCell key={index + 1} align="center">
-                      {index + 1}
-                    </TableCell>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return column.id === "created_at" ? (
-                        <TableCell key={column.id} align={column.align}>
-                          {moment(value).format("DD-MM-YYYY HH:mm:ss")}
-                        </TableCell>
-                      ) : (
-                        <TableCell
-                          key={column.id}
-                          align={column.align}
-                          style={{
-                            color:
-                              column.id === "description" ? "blue" : "black",
-                            cursor:
-                              column.id === "description" ? "pointer" : "auto",
-                          }}
-                          onClick={() => {
-                            if (
-                              column.id === "description" &&
-                              value.includes("//")
-                            ) {
-                              showBet(value);
-                            }
-                          }}
-                        >
-                          {column.id === "description"
-                            ? trimDes(value, row.type)
-                            : column.format && typeof value === "number"
-                            ? column.format(value)
-                            : !value
-                            ? "-"
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 50, 100]}
-        component="div"
-        count={rows?.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-      />
-    </Paper>
+            </TableHead>
+            <TableBody>
+              {!rows?.length ? (
+                <TableRow>
+                  <TableCell colSpan="6">No data</TableCell>
+                </TableRow>
+              ) : null}
+              {rows
+                ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((row, index) => {
+                  return (
+                    <TableRow
+                      hover
+                      role="checkbox"
+                      tabIndex={-1}
+                      key={index + 1}
+                    >
+                      <TableCell key={index + 1} align="center">
+                        {index + 1}
+                      </TableCell>
+                      {columns.map((column) => {
+                        const value = row[column.id];
+                        return column.id === "created_at" ? (
+                          <TableCell key={column.id} align={column.align}>
+                            {moment(value).format("DD-MM-YYYY HH:mm:ss")}
+                          </TableCell>
+                        ) : (
+                          <TableCell
+                            key={column.id}
+                            align={column.align}
+                            style={{
+                              color:
+                                column.id === "description" ? "blue" : "black",
+                              cursor:
+                                column.id === "description"
+                                  ? "pointer"
+                                  : "auto",
+                            }}
+                            onClick={() => {
+                              if (
+                                column.id === "description" &&
+                                value.includes("//")
+                              ) {
+                                showBet(value);
+                              }
+                            }}
+                          >
+                            {column.id === "description"
+                              ? trimDes(value, row.type)
+                              : column.format && typeof value === "number"
+                              ? column.format(value)
+                              : !value
+                              ? "-"
+                              : value}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  );
+                })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[10, 25, 50, 100]}
+          component="div"
+          count={rows?.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
+      </Paper>
+    </>
   );
 
   if (bets) {
@@ -308,72 +323,4 @@ export default function AccountStatement() {
   );
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-  },
-  paper: {
-    width: "100%",
-    marginBottom: theme.spacing(2),
-    borderRadius: 0,
-    backgroundColor: "#f5f5f5",
-    padding: 10,
-    [theme.breakpoints.down("sm")]: {
-      margin: -10,
-      width: "initial",
-      padding: 20,
-    },
-  },
-  table: {
-    overflow: "scroll",
-    border: "solid 1px #bdc3c7",
-    backgroundColor: "#FFFFFF",
-    "& thead th": {
-      padding: "6px 12px",
-      color: "rgba(0,0,0,.54)",
-      font: '600 12px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
-      backgroundColor: "#f5f7f7",
-      position: "relative",
-    },
-    "& thead th::before": {
-      borderRight: "1px solid rgba(189,195,199,.5)",
-      content: "''",
-      height: 16,
-      marginTop: 8,
-      position: "absolute",
-      left: 0,
-      textIndent: 2000,
-      top: 0,
-    },
-    "& thead th:first-child::before": {
-      content: "none",
-    },
-    "& tbody td": {
-      font: '400 12px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
-      padding: "0 12px",
-      color: "rgba(0,0,0)",
-      lineHeight: "32px",
-      borderBottom: "solid 1px #d9dcde",
-    },
-    "& tbody td p": {
-      margin: 0,
-    },
-  },
-  titlePanel: {
-    background: appTheme.colors.primary,
-    color: appTheme.colors.textLight,
-    fontWeight: 700,
-    border: 0,
-    margin: "-10px -10px 0 -10px",
-    minHeight: 1,
-    padding: 10,
-    justifyContent: "space-between",
-  },
-  title: {
-    marginRight: "10px",
-    fontSize: 14,
-    fontFamily: "inherit",
-    textTransform: "uppercase",
-    fontWeight: 700,
-  },
-}));
+const useStyles = makeStyles(sectionStyle);

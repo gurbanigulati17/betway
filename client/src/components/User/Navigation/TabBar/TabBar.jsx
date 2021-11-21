@@ -59,7 +59,7 @@ const MenuList = ({ menu, onLogout }) => {
           <li
             key={index.toString()}
             className={classnames({
-              active: isRouteActive(pathname, item),
+              active: isChildVisible.includes(index),
             })}
           >
             {item.href ? (
@@ -95,20 +95,17 @@ const MenuList = ({ menu, onLogout }) => {
             )}
             {item.items &&
               item.items.length &&
-              (isChildVisible.includes(index) ||
-                isRouteActive(pathname, item)) && (
-                <MenuList menu={item.items} />
-              )}
+              isChildVisible.includes(index) && <MenuList menu={item.items} />}
           </li>
         );
       })}
       {onLogout && (
-        <li>
-          <button className="nav-link" onClick={onLogout}>
+        <li className="logout">
+          <button onClick={onLogout}>
+            <span className="label">Logout</span>
             <span className="icon">
               <i className="fas fa-sign-out-alt"></i>
             </span>
-            <span className="label">Logout</span>
           </button>
         </li>
       )}

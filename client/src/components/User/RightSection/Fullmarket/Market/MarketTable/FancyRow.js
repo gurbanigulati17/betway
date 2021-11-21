@@ -421,7 +421,7 @@ const FancyRow = (props) => {
   );
 
   if (isBetting) {
-    lower = <BetSpinner width="150px" />;
+    lower = <BetSpinner />;
   }
 
   return (

@@ -1,7 +1,7 @@
 .Exchange {
   margin-bottom: 20px;
-  border-bottom: solid 1px#CCC;
-  background: #fff;
+  border-bottom: 1px solid #7e97a7;
+  border-top: 0;
 }
 
 .Exchange:empty {
@@ -9,13 +9,24 @@
 }
 
 .title {
-  font-weight: 600;
-  color: #53555b;
-  padding: 10px;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #f4f4f4;
+  border-bottom: 2px solid #0c92a5;
+}
+
+.box {
+  color: #fff;
+  font-weight: 700;
+  padding: 5px 40px 5px 10px;
+  position: relative;
+  background: #067e8f;
+  border-top-right-radius: 15px;
+  font-size: 12px;
+  display: inline-block;
+  position: relative;
+  margin-top: -2px;
 }
 
 .name {
@@ -24,7 +35,11 @@
 
 .betGrid {
   padding: 0;
-  border-bottom: 1px solid #f4f4f4;
+  border-left: 1px solid #c8ced3;
+  border-right: 1px solid #c8ced3;
+  border-top: 1px solid #7e97a7;
+  background: #fff;
+  position: relative;
 }
 
 .betGridAttributes {
@@ -34,16 +49,17 @@
 }
 
 .betNameWarpper {
-  padding: 8px;
+  padding: 5px;
   padding-right: 20px;
   width: calc(100% - 280px);
   position: relative;
 }
 
 .book {
-  position: absolute !important;
-  right: 15px;
-  bottom: 5px;
+  position: absolute;
+  right: 7px;
+  bottom: 7px;
+  font-weight: bold;
 }
 
 .backLayWrapper {
@@ -54,22 +70,28 @@
 .head {
   display: flex;
   justify-content: flex-end;
-  padding-right: 140px;
+  border-left: 1px solid #c8ced3;
+  border-right: 1px solid #c8ced3;
+  background-color: #fff;
 }
 
 .headTitle {
   text-transform: uppercase;
   font-size: 12px;
   color: #333;
-  border: 1px solid #fff;
   border-left: 0;
-  background-color: #ececed;
   font-weight: bold;
-  width: 70px;
-  padding: 5px;
-  min-height: 50px;
-  line-height: 3;
+  width: 85px;
+  padding: 8px;
   text-align: center;
+}
+
+.titleBack {
+  background-color: #faa9ba;
+}
+
+.titleLay {
+  background-color: #72bbef;
 }
 
 .suspended {
@@ -83,10 +105,9 @@
 }
 
 .element {
-  width: 70px;
+  width: 85px;
   text-align: center;
   padding: 5px;
-  border: 1px solid #ffffff;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -105,36 +126,41 @@
 }
 
 .lay3 > div {
-  background-color: #fff5f7;
+  background-color: #f6e6ea;
 }
 
 .lay2 > div {
-  background-color: #ffe5ea;
+  background-color: #efd3d9;
 }
 
 .lay1 > div {
-  background-color: #ffcad5;
+  background-color: #faa9ba;
 }
 
 .activeLay {
 }
 
 .back3 > div {
-  background-color: #f1f9ff;
+  background-color: #d7e8f4;
 }
 
 .back2 > div {
-  background-color: #e4f2fc;
+  background-color: #b7d5eb;
 }
 
 .back1 > div {
-  background-color: #aedbfb;
+  background-color: #72bbef;
 }
 
 .activeBack {
 }
 
 .maxMin {
+  width: 110px;
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+  order: 3;
   font-size: 11px;
 }
 
@@ -148,7 +174,6 @@
   align-items: center;
   justify-content: center;
   padding: 10px;
-  background-color: #ececed;
 }
 
 .profitLoss span {
@@ -168,17 +193,33 @@
   background: rgba(255, 250, 250, 0.75) !important;
 }
 
+.infoWrapper {
+  position: absolute;
+  right: -5px;
+  top: 0;
+  bottom: 0;
+  padding: 5px 15px;
+  background: url("../../../../../../assets/bg-fanctbet_rules.svg") no-repeat;
+  background-size: cover;
+}
+
 .info {
-  font-size: 16px;
-  margin-right: 10px;
+  font-size: 14px;
   vertical-align: bottom;
   cursor: pointer;
-  color: #000;
+}
+
+.maxMinMobile {
+  display: none;
 }
 
 @media screen and (max-width: 767px) {
   .title {
-    padding: 10px;
+  }
+
+  .maxMin {
+    order: 0;
+    width: calc(100% - 132px);
   }
 
   .head {
@@ -187,17 +228,44 @@
   }
 
   .betNameWarpper {
-    width: calc(100% - 140px);
+    width: calc(100% - 120px);
   }
 
   .backLayWrapper {
-    width: 140px;
+    width: 120px;
   }
 
   .back2,
   .back3,
   .lay2,
-  .lay3 {
+  .lay3,
+  .maxMinWide {
     display: none;
+  }
+
+  .element,
+  .headTitle {
+    width: 60px;
+    border-radius: 0 !important;
+  }
+
+  .size {
+    font-size: 11px;
+  }
+
+  .maxMinDesktop {
+    display: none;
+  }
+
+  .maxMinMobile {
+    display: block;
+    background-color: #bed5d8;
+    font-size: 10px;
+    line-height: 1;
+    border-radius: 3px;
+    margin: 7px;
+    text-align: center;
+    font-weight: bold;
+    padding: 5px;
   }
 }

@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useForm } from "react-hook-form";
 import axios from "../../../../../axios-instance/backendAPI";
@@ -79,9 +78,13 @@ export default function Delete(props) {
           </p>
         </div>
         <div className="footer">
-          <Button type="submit" variant="contained" className="btn btn-danger">
+          <button
+            type="submit"
+            variant="contained"
+            className="btn btn-primary btn-extra"
+          >
             Submit
-          </Button>
+          </button>
         </div>
       </form>
     </>

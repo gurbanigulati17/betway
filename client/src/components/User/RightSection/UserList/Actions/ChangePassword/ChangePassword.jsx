@@ -27,6 +27,7 @@ export default function ChangePassword(props) {
         console.log(error);
       });
   };
+
   return (
     <>
       <div className="head">
@@ -100,7 +101,7 @@ export default function ChangePassword(props) {
           </div>
         </div>
         <div className="footer">
-          <button type="submit" className="btn btn-danger">
+          <button type="submit" className="btn btn-primary">
             Submit
           </button>
         </div>

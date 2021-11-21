@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: 35% 30% 35%;
   font-weight: 700;
+  padding: 10px 10px 0 10px;
 }
 .row div {
   text-align: center;
@@ -39,6 +40,7 @@
 }
 .matchTable {
   width: 100%;
+  padding: 0 10px 10px 10px;
 }
 .matchData {
   text-align: right;
@@ -55,9 +57,9 @@
   color: white;
   font-weight: 700;
   padding: 0 10px;
-  background: #303030;
-  font-size: 14px;
+  font-size: 12px;
   align-items: center;
+  background: linear-gradient(180deg, #2a3a43 27%, #1c282d 83%);
 }
 
 .tvIcon {

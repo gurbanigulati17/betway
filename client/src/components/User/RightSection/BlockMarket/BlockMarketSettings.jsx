@@ -15,7 +15,7 @@ import format from "date-fns/format";
 import { makeStyles } from "@material-ui/core/styles";
 import "alertifyjs/build/css/alertify.css";
 
-import appTheme from "../../../../styles/theme";
+import { sectionStyle } from "../../../../utils/common.style";
 
 export default function BlockMarket() {
   const classes = useStyles();
@@ -179,91 +179,4 @@ export default function BlockMarket() {
   );
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-  },
-  paper: {
-    width: "100%",
-    marginBottom: theme.spacing(2),
-    borderRadius: 0,
-    backgroundColor: "#f5f5f5",
-    padding: 10,
-    [theme.breakpoints.down("sm")]: {
-      margin: -10,
-      width: "initial",
-      padding: 20,
-    },
-  },
-  container: {
-    overflow: "auto",
-    maxHeight: 440,
-  },
-  table: {
-    overflow: "scroll",
-    border: "solid 1px #bdc3c7",
-    backgroundColor: "#FFFFFF",
-    "& thead th": {
-      padding: "6px 12px",
-      color: "rgba(0,0,0,.54)",
-      font: '600 12px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
-      backgroundColor: "#f5f7f7",
-      position: "relative",
-    },
-    "& thead th::before": {
-      borderRight: "1px solid rgba(189,195,199,.5)",
-      content: "''",
-      height: 16,
-      marginTop: 8,
-      position: "absolute",
-      left: 0,
-      textIndent: 2000,
-      top: 0,
-    },
-    "& thead th:first-child::before": {
-      content: "none",
-    },
-    "& tbody td": {
-      font: '400 12px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
-      padding: "0 12px",
-      color: "rgba(0,0,0)",
-      lineHeight: "32px",
-      borderBottom: "solid 1px #d9dcde",
-    },
-    "& tbody td p": {
-      margin: 0,
-    },
-    "& tbody td button": {
-      marginTop: "5px !important",
-      marginBottom: "5px !important",
-    },
-  },
-  titlePanel: {
-    background: appTheme.colors.primary,
-    color: appTheme.colors.textLight,
-    fontWeight: 700,
-    border: 0,
-    margin: "-10px -10px 10px -10px",
-    minHeight: 1,
-    padding: 10,
-    justifyContent: "space-between",
-  },
-  title: {
-    marginRight: "10px",
-    fontSize: 14,
-    fontFamily: "inherit",
-    textTransform: "uppercase",
-    fontWeight: 700,
-  },
-  currentPosition: {
-    display: "flex",
-    flexWrap: "nowrap",
-    justifyContent: "space-evenly",
-  },
-  link: {
-    color: "#43b1bd",
-  },
-  colSmall: {
-    width: 180,
-  },
-}));
+const useStyles = makeStyles(sectionStyle);

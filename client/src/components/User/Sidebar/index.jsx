@@ -9,7 +9,12 @@ import styles from "./styles";
 import { sidebarItems } from "./config";
 import SidebarNav from "./SidebarNav";
 
-const Sidebar = ({ className }) => {
+const Sidebar = ({
+  className,
+  isTitled = true,
+  isExtraVisible = false,
+  themed,
+}) => {
   const [menuListApi, setMenuListApi] = useState([]);
   const username = useSelector((state) => state.auth.username);
   const usertype = useSelector((state) => state.auth.usertype);
@@ -56,12 +61,17 @@ const Sidebar = ({ className }) => {
   }, [menuListApi, username, usertype]);
 
   return (
-    <aside className={classnames("sidebar-panel", className)}>
+    <aside className={classnames("sidebar-panel", className, themed)}>
       {sidebarNav.map((sidebarSection, index) => {
         return (
           <div className="sidebar-section" key={index.toString()}>
-            {sidebarSection.title && <h3>{sidebarSection.title}</h3>}
-            <SidebarNav items={sidebarSection.items} />
+            {sidebarSection.title && isTitled && (
+              <h3>{sidebarSection.title}</h3>
+            )}
+            <SidebarNav
+              items={sidebarSection.items}
+              isExtraVisible={isExtraVisible}
+            />
           </div>
         );
       })}
