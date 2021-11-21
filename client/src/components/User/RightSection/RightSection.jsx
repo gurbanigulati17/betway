@@ -30,6 +30,7 @@ import UserActivity from "./UserList/Actions/UserActivity";
 import Slider from "../Slider";
 import Message from "../Message";
 import Account from "../RightSection/Accounts";
+import Footer from "../../User/Footer";
 
 const useStyles = makeStyles((theme) => ({
   contab: {
@@ -88,6 +89,7 @@ const RightSection = () => {
                   <Message />
                   <Slider />
                   <Dashboard />
+                  <Footer />
                 </div>
                 <div className={classes.columnRight}>
                   <BetSlip isMobileHidden />

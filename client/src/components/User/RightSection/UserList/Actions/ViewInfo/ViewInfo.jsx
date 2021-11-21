@@ -1,22 +1,17 @@
 import React from "react";
-import { Button, Paper } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import ViewInfoDetail from "./ViewInfoDetail/ViewInfoDetail";
 import appTheme from "../../../../../../styles/theme";
 
 export default function ViewInfo(props) {
-  const classes = useStyles();
   const info = ["User", "Soccer", "Tennis", "Cricket", "Fancy", "Commission"];
   return (
-    <Paper className={classes.paper}>
-      <div className={classes.titlePanel}>
-        <span className={classes.title}>Account Information</span>
-        <Button className="btn btn-danger" onClick={props.handleClose}>
-          Close
-        </Button>
+    <>
+      <div className="head">
+        <h3>Account Information</h3>
       </div>
-      <div className={classes.viewWrapper}>
+      <div className="body">
         {info.map((id, index) => {
           return (
             <ViewInfoDetail
@@ -31,7 +26,7 @@ export default function ViewInfo(props) {
           );
         })}
       </div>
-    </Paper>
+    </>
   );
 }
 

@@ -1,0 +1,72 @@
+.footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.3);
+  margin: 40px 0;
+  padding-top: 10px;
+}
+
+.helpLinks ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.helpLinks ul li {
+  padding: 0 10px;
+  border-right: solid 1px #000;
+  margin: 5px 0;
+}
+
+.helpLinks ul li:last-child {
+  border-right: 0;
+}
+
+.helpLinks ul a {
+  font-size: 14px;
+  line-height: 1;
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.whatsapp {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.whatsapp h3 {
+  color: rgba(0, 0, 0, 0.3);
+  font-size: 15px;
+  margin-right: 15px;
+  font-weight: 700;
+  display: inline-block;
+}
+
+.whatsapp a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.whatsapp a span {
+  font-size: 14px;
+  line-height: 1;
+  color: #000;
+}
+
+.whatsapp a svg {
+  font-size: 25px;
+  color: rgba(0, 0, 0, 0.3);
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+@media screen and (max-width: 767px) {
+  .footer {
+    margin: 20px 0;
+  }
+}

@@ -72,16 +72,8 @@ const Login = (props) => {
         </div>
         <div className={`${classes.loginContainer}`}>
           <div className={`${classes.formcontent}`}>
-            <div className={classes.logo}>
-              <span>
-                VR
-                <div className={classes.hr} />
-              </span>
-              <img src={logo} alt="Parkbet999" width="250" />
-            </div>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className={classes.formgroup}>
-                <i className="fa fa-user"></i>
                 <input
                   name="username"
                   defaultValue="Superadmin"
@@ -92,7 +84,6 @@ const Login = (props) => {
                 />
               </div>
               <div className={classes.formgroup}>
-                <i className="fa fa-lock"></i>
                 <input
                   className={classes.inputField}
                   placeholder="Password"
@@ -102,7 +93,8 @@ const Login = (props) => {
                 />
               </div>
               <button ref={btnRef} type="submit" className={classes.button}>
-                Log in
+                <span>Login</span>
+                <i className="fa fa-sign-in-alt"></i>
               </button>
             </form>
           </div>

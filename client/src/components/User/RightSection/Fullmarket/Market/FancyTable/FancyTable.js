@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import classes from "./FancyTable.module.css";
-import axios from "../../../../../../axios-instance/oddsApi";
 import back_axios from "../../../../../../axios-instance/backendAPI";
 import FancyRow from "./FancyRow";
 import { useSelector } from "react-redux";
