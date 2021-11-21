@@ -8,108 +8,15 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Button,
 } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import axios from "../../../../axios-instance/backendAPI";
 import Modal from "../../../UI/Modal/Modal";
 import Settlement from "../UserList/Actions/Settlement";
 import { useHistory } from "react-router-dom";
+import { sectionStyle } from "../../../../utils/common.style";
 
-import appTheme from "../../../../styles/theme";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-  },
-  box: {
-    display: "grid",
-    gridTemplateColumns: "48% 4% 48%",
-    [theme.breakpoints.down("sm")]: {
-      gridTemplateColumns: "auto",
-    },
-  },
-  link: {
-    color: "blue",
-    cursor: "pointer",
-  },
-  back: {
-    marginTop: 10,
-    float: "right",
-  },
-  paper: {
-    width: "100%",
-    marginBottom: theme.spacing(2),
-    borderRadius: 0,
-    backgroundColor: "#f5f5f5",
-    padding: 10,
-    [theme.breakpoints.down("sm")]: {
-      margin: -10,
-      width: "initial",
-      padding: 20,
-    },
-  },
-  container: {
-    overflow: "auto",
-    maxHeight: 440,
-  },
-  table: {
-    overflow: "scroll",
-    border: "solid 1px #bdc3c7",
-    backgroundColor: "#FFFFFF",
-    "& thead th": {
-      padding: "6px 12px",
-      color: "rgba(0,0,0,.54)",
-      font: '600 12px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
-      backgroundColor: "#f5f7f7",
-      position: "relative",
-    },
-    "& thead th::before": {
-      borderRight: "1px solid rgba(189,195,199,.5)",
-      content: "''",
-      height: 16,
-      marginTop: 8,
-      position: "absolute",
-      left: 0,
-      textIndent: 2000,
-      top: 0,
-    },
-    "& thead th:first-child::before": {
-      content: "none",
-    },
-    "& tbody td": {
-      font: '400 12px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
-      padding: "0 12px",
-      color: "rgba(0,0,0)",
-      lineHeight: "32px",
-      borderBottom: "solid 1px #d9dcde",
-    },
-    "& tbody td p": {
-      margin: 0,
-    },
-    "& tbody td button": {
-      marginTop: "5px !important",
-      marginBottom: "5px !important",
-    },
-  },
-  titlePanel: {
-    background: appTheme.colors.primary,
-    color: appTheme.colors.textLight,
-    fontWeight: 700,
-    border: 0,
-    margin: "-10px -10px 0 -10px",
-    minHeight: 1,
-    padding: 10,
-    justifyContent: "space-between",
-  },
-  title: {
-    marginRight: "10px",
-    fontSize: 14,
-    fontFamily: "inherit",
-    textTransform: "uppercase",
-    fontWeight: 700,
-  },
-}));
+const useStyles = makeStyles(sectionStyle);
 
 export default function ChipSummary() {
   const classes = useStyles();
@@ -241,15 +148,14 @@ export default function ChipSummary() {
             <TableCell>{user.winnings}</TableCell>
             <TableCell>
               {user.usertype === userInfo.usertype ? null : (
-                <Button
-                  variant="contained"
+                <button
+                  className="btn btn-primary"
                   onClick={() => {
                     settlement(userInfo.username, user.username, user.winnings);
                   }}
-                  className="btn btn-info"
                 >
                   Settlement
-                </Button>
+                </button>
               )}
             </TableCell>
           </TableRow>
@@ -279,14 +185,14 @@ export default function ChipSummary() {
             <TableCell>{user.winnings}</TableCell>
             <TableCell>
               {user.usertype === userInfo.usertype ? null : (
-                <Button
-                  variant="contained"
+                <button
+                  className="btn btn-primary"
                   onClick={() => {
                     settlement(userInfo.username, user.username, user.winnings);
                   }}
                 >
                   Settlement
-                </Button>
+                </button>
               )}
             </TableCell>
           </TableRow>
@@ -309,9 +215,9 @@ export default function ChipSummary() {
             chips={settleInfo.chips}
           />
         </Modal>
-        <div className={classes.head}>
+        <div className={classes.backWrapper}>
           <button
-            className={`${classes.back} btn btn-danger`}
+            className={`${classes.back} btn btn-primary`}
             onClick={() => {
               back();
             }}
@@ -319,40 +225,37 @@ export default function ChipSummary() {
             Back
           </button>
         </div>
-        <div className={classes.box}>
-          <div>
-            <h3>PLUS ACCOUNT(Dene ha)</h3>
-            <TableContainer className={classes.container}>
-              <Table className={classes.table}>
-                <TableHead>
-                  <TableRow>
-                    <TableCell className={classes.heading}>Name</TableCell>
-                    <TableCell className={classes.heading}>Account</TableCell>
-                    <TableCell className={classes.heading}>Chips</TableCell>
-                    <TableCell className={classes.heading}>Action</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>{plus}</TableBody>
-              </Table>
-            </TableContainer>
-          </div>
-          <div></div>
-          <div>
-            <h3>MINUS ACCOUNT(Lene ha)</h3>
-            <TableContainer className={classes.container}>
-              <Table className={classes.table}>
-                <TableHead>
-                  <TableRow>
-                    <TableCell className={classes.heading}>Name</TableCell>
-                    <TableCell className={classes.heading}>Account</TableCell>
-                    <TableCell className={classes.heading}>Chips</TableCell>
-                    <TableCell className={classes.heading}>Action</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>{minus}</TableBody>
-              </Table>
-            </TableContainer>
-          </div>
+        <div style={{ marginBottom: 20 }}>
+          <h3 style={{ marginTop: 0 }}>PLUS ACCOUNT(Dene ha)</h3>
+          <TableContainer className={classes.container}>
+            <Table className={classes.table}>
+              <TableHead>
+                <TableRow>
+                  <TableCell className={classes.heading}>Name</TableCell>
+                  <TableCell className={classes.heading}>Account</TableCell>
+                  <TableCell className={classes.heading}>Chips</TableCell>
+                  <TableCell className={classes.heading}>Action</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>{plus}</TableBody>
+            </Table>
+          </TableContainer>
+        </div>
+        <div>
+          <h3 style={{ marginTop: 0 }}>MINUS ACCOUNT(Lene ha)</h3>
+          <TableContainer className={classes.container}>
+            <Table className={classes.table}>
+              <TableHead>
+                <TableRow>
+                  <TableCell className={classes.heading}>Name</TableCell>
+                  <TableCell className={classes.heading}>Account</TableCell>
+                  <TableCell className={classes.heading}>Chips</TableCell>
+                  <TableCell className={classes.heading}>Action</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>{minus}</TableBody>
+            </Table>
+          </TableContainer>
         </div>
       </div>
     </Paper>

@@ -10,9 +10,9 @@ import styles from "./style";
 
 const USER_NAV = [
   {
-    name: "Bets",
-    href: "/bethistory",
-    icon: "coins",
+    name: "Home",
+    href: "/dashboard",
+    icon: "home",
   },
   {
     name: "In-Play",
@@ -20,9 +20,9 @@ const USER_NAV = [
     icon: "stopwatch",
   },
   {
-    name: "Home",
-    href: "/dashboard",
-    icon: "home",
+    name: "Bets",
+    href: "/bethistory",
+    icon: "coins",
   },
   {
     name: "Analysis",
@@ -38,9 +38,9 @@ const USER_NAV = [
 
 const ADMIN_NAV = [
   {
-    name: "Bets",
-    href: "/bethistory",
-    icon: "coins",
+    name: "Home",
+    href: "/dashboard",
+    icon: "home",
   },
   {
     name: "In-Play",
@@ -48,9 +48,9 @@ const ADMIN_NAV = [
     icon: "stopwatch",
   },
   {
-    name: "Home",
-    href: "/dashboard",
-    icon: "home",
+    name: "Bets",
+    href: "/bethistory",
+    icon: "coins",
   },
   {
     name: "Users",

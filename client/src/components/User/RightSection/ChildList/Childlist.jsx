@@ -29,7 +29,10 @@ import "alertifyjs/build/css/alertify.css";
 import BetSpinner from "../../../UI/Spinner/BetSpinner";
 import ChangeName from "../UserList/Actions/ChangeName";
 
-import appTheme from "../../../../styles/theme";
+import { toolbarStyle, sectionStyle } from "../../../../utils/common.style";
+
+const useStyles = makeStyles((theme) => sectionStyle(theme));
+const useToolbarStyles = makeStyles((theme) => toolbarStyle(theme));
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -57,213 +60,12 @@ function stableSort(array, comparator) {
   return stabilizedThis?.map((el) => el[0]);
 }
 
-const useToolbarStyles = makeStyles((theme) => ({
-  root: {
-    background: appTheme.colors.primary,
-    color: appTheme.colors.textLight,
-    fontWeight: 700,
-    border: 0,
-    margin: "-10px -10px 0 -10px",
-    minHeight: 1,
-    padding: 10,
-    justifyContent: "space-between",
-  },
-  paper: {
-    position: "absolute",
-    maxWidth: 400,
-    margin: "auto",
-    backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
-    boxShadow: theme.shadows[5],
-    padding: " 0 25px 10px",
-  },
-  bigpaper: {
-    backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
-    boxShadow: theme.shadows[5],
-    height: "500px",
-    overflowY: "scroll",
-    position: "relative",
-  },
-  title: {
-    marginRight: "10px",
-    fontSize: 14,
-    fontFamily: "inherit",
-    textTransform: "uppercase",
-    fontWeight: 700,
-  },
-  modal: {
-    position: "absolute",
-    marginLeft: "430px",
-    marginTop: "115px",
-    [theme.breakpoints.down("sm")]: {
-      margin: "0",
-    },
-  },
-  gridy: {
-    marginBottom: "5px",
-  },
-}));
-
 const users = [
   { type: "Seniorsuper", usertype: "2" },
   { type: "Supermaster", usertype: "3" },
   { type: "Master", usertype: "4" },
   { type: "Client", usertype: "5" },
 ];
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-  },
-  paper: {
-    width: "100%",
-    marginBottom: theme.spacing(2),
-    borderRadius: 0,
-    backgroundColor: "#f5f5f5",
-    padding: 10,
-    [theme.breakpoints.down("sm")]: {
-      margin: -10,
-      width: "initial",
-      padding: 20,
-    },
-  },
-  visuallyHidden: {
-    border: 0,
-    clip: "rect(0 0 0 0)",
-    height: 1,
-    margin: -1,
-    overflow: "hidden",
-    padding: 0,
-    position: "absolute",
-    top: 20,
-    width: 1,
-  },
-  search: {
-    position: "relative",
-    border: "1px solid #d2d6de",
-    float: "right",
-    margin: "5px 0",
-    width: 220,
-    "& input": {
-      width: "100%",
-      paddingLeft: 40,
-    },
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 1),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  actionButton: {
-    margin: 3,
-    cursor: "pointer",
-    border: 0,
-    background: "#1a8ee1",
-    borderRadius: 2,
-    color: "#FFF",
-    padding: "3px 7px",
-    display: "inline-block",
-  },
-  theme1: {
-    background: "#0cb164",
-  },
-  theme2: {
-    background: "#d62d45",
-  },
-  theme3: {
-    background: "#d3d62d",
-  },
-  theme4: {
-    background: "#2ca7c3",
-  },
-  theme5: {
-    background: "#a5c32c",
-  },
-  theme6: {
-    background: "#c3952c",
-  },
-  theme7: {
-    background: "#dc8970",
-  },
-  theme8: {
-    background: "#c7ab9b",
-  },
-  theme9: {
-    background: "#1ae1cf",
-  },
-  inputRoot: {
-    color: "inherit",
-  },
-  loader: {
-    display: "flex",
-    justifyContent: "center",
-    width: "600%",
-    [theme.breakpoints.down("sm")]: {
-      width: "200%",
-    },
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
-  },
-  container: {
-    overflow: "auto",
-    maxHeight: 440,
-  },
-  sortLabel: {
-    color: "rgba(0,0,0,.54) !important",
-    whiteSpace: "nowrap",
-    "& > svg": {
-      color: "inherit !important",
-    },
-  },
-  table: {
-    overflow: "scroll",
-    border: "solid 1px #bdc3c7",
-    backgroundColor: "#FFFFFF",
-    "& thead th": {
-      padding: "6px 12px",
-      color: "rgba(0,0,0,.54)",
-      font: '600 12px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
-      backgroundColor: "#f5f7f7",
-      position: "relative",
-    },
-    "& thead th::before": {
-      borderRight: "1px solid rgba(189,195,199,.5)",
-      content: "''",
-      height: 16,
-      marginTop: 8,
-      position: "absolute",
-      left: 0,
-      textIndent: 2000,
-      top: 0,
-    },
-    "& tbody td": {
-      font: '400 12px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
-      padding: "0 12px",
-      color: "rgba(0,0,0)",
-      lineHeight: "32px",
-      borderBottom: "solid 1px #d9dcde",
-    },
-    "& tbody td p": {
-      margin: 0,
-    },
-    "& tbody td button": {
-      marginTop: "5px !important",
-      marginBottom: "5px !important",
-    },
-  },
-}));
 
 export default function ChildList() {
   const classes = useStyles();
@@ -462,8 +264,6 @@ export default function ChildList() {
         toRender = (
           <AddUser
             handleClose={handleClose}
-            paper={classes.paper}
-            gridy={classes.gridy}
             usertype={parseFloat(action.usertype) + 1}
             uplink={action.username}
             updateRows={updateRows}
@@ -475,8 +275,6 @@ export default function ChildList() {
           <Deposit
             handleClose={handleClose}
             updateRows={updateRows}
-            paper={classes.paper}
-            gridy={classes.gridy}
             userBalance={action.balance}
             uplink={action.uplink}
             downlink={action.username}
@@ -490,8 +288,6 @@ export default function ChildList() {
           <Withdraw
             handleClose={handleClose}
             updateRows={updateRows}
-            paper={classes.paper}
-            gridy={classes.gridy}
             userBalance={action.balance}
             uplink={action.uplink}
             downlink={action.username}
@@ -505,7 +301,6 @@ export default function ChildList() {
           <ChangePassword
             handleClose={handleClose}
             username={action.username}
-            paper={classes.paper}
           />
         );
         break;
@@ -514,7 +309,6 @@ export default function ChildList() {
           <ViewInfo
             handleClose={handleClose}
             username={action.username}
-            paper={classes.bigpaper}
             commission={action.commission}
             updateRows={updateRows}
           />
@@ -544,31 +338,14 @@ export default function ChildList() {
         break;
     }
     return (
-      <Toolbar className={classes.root}>
-        <Typography
-          className={classes.title}
-          variant="h6"
-          id="tableTitle"
-          component="div"
-        >
-          {users
-            .filter((obj) => {
-              return parseFloat(obj.usertype) === parseFloat(usertype) + 1;
-            })
-            .map((obj) => obj.type)}{" "}
-          listing
-        </Typography>
-        <div>
-          <Modal
-            open={open}
-            bigmodal={bigmodal}
-            onClose={handleClose}
-            isOuterStructure
-          >
-            {toRender}
-          </Modal>
-        </div>
-      </Toolbar>
+      <Modal
+        open={open}
+        bigmodal={bigmodal}
+        onClose={handleClose}
+        isOuterStructure
+      >
+        {toRender}
+      </Modal>
     );
   };
 
@@ -725,298 +502,307 @@ export default function ChildList() {
       });
   };
 
-  //const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
-
   return (
-    <Paper className={classes.paper}>
-      <div className={classes.titlePanel}>
-        <EnhancedTableToolbar />
+    <>
+      <div className={classes.card}>
+        <HelperLabel />
       </div>
-
-      <HelperLabel />
-      <div className={classes.search}>
-        <div className={classes.searchIcon}>
-          <SearchIcon />
+      <Paper className={classes.paper}>
+        <div className={classes.titlePanel}>
+          <span className={classes.title}>
+            {users
+              .filter((obj) => {
+                return parseFloat(obj.usertype) === parseFloat(usertype) + 1;
+              })
+              .map((obj) => obj.type)}{" "}
+            listing
+          </span>
         </div>
+        <EnhancedTableToolbar />
+        <div className={classes.search}>
+          <div className={classes.searchIcon}>
+            <SearchIcon />
+          </div>
 
-        <InputBase
-          placeholder="Search…"
-          classes={{
-            root: classes.inputRoot,
-            input: classes.inputInput,
-          }}
-          onChange={handleSearch}
-          inputProps={{ "aria-label": "search" }}
-        />
-      </div>
-      <TableContainer className={classes.container}>
-        <Table
-          className={classes.table}
-          aria-labelledby="tableTitle"
-          size="medium"
-          aria-label="enhanced table"
-        >
-          <EnhancedTableHead
-            classes={classes}
-            order={order}
-            orderBy={orderBy}
-            onRequestSort={handleRequestSort}
-            rowCount={rows ? rows.length : 0}
-            uplink={params.username}
+          <InputBase
+            placeholder="Search…"
+            classes={{
+              root: classes.inputRoot,
+              input: classes.inputInput,
+            }}
+            onChange={handleSearch}
+            inputProps={{ "aria-label": "search" }}
           />
-          <TableBody>
-            {rows ? (
-              !rows.length ? (
-                <TableRow>
-                  <TableCell>No data</TableCell>
+        </div>
+        <TableContainer className={classes.container}>
+          <Table
+            className={classes.table}
+            aria-labelledby="tableTitle"
+            size="medium"
+            aria-label="enhanced table"
+          >
+            <EnhancedTableHead
+              classes={classes}
+              order={order}
+              orderBy={orderBy}
+              onRequestSort={handleRequestSort}
+              rowCount={rows ? rows.length : 0}
+              uplink={params.username}
+            />
+            <TableBody>
+              {rows ? (
+                !rows.length ? (
+                  <TableRow>
+                    <TableCell>No data</TableCell>
+                  </TableRow>
+                ) : null
+              ) : (
+                <TableRow className={classes.loader}>
+                  <BetSpinner />
                 </TableRow>
-              ) : null
-            ) : (
-              <TableRow className={classes.loader}>
-                <BetSpinner />
-              </TableRow>
-            )}
-            {stableSort(rows, getComparator(order, orderBy))
-              ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row, index) => {
-                return (
-                  <TableRow hover tabIndex={-1} key={row.username}>
-                    <TableCell>{index + 1 + page}</TableCell>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return column.id === "action" ? (
-                        <TableCell
-                          key={column.id}
-                          align="center"
-                          padding="none"
-                          style={{ minWidth: "300px" }}
-                        >
-                          {row.usertype === "5" ? null : (
+              )}
+              {stableSort(rows, getComparator(order, orderBy))
+                ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((row, index) => {
+                  return (
+                    <TableRow hover tabIndex={-1} key={row.username}>
+                      <TableCell>{index + 1 + page}</TableCell>
+                      {columns.map((column) => {
+                        const value = row[column.id];
+                        return column.id === "action" ? (
+                          <TableCell
+                            key={column.id}
+                            align="center"
+                            padding="none"
+                            style={{ minWidth: "300px" }}
+                          >
+                            {row.usertype === "5" ? null : (
+                              <button
+                                onClick={() => {
+                                  modalChange(
+                                    "addChild",
+                                    row.username,
+                                    row.usertype,
+                                    row.balance,
+                                    row.uplink
+                                  );
+                                }}
+                                className={`${classes.actionButton}`}
+                              >
+                                A
+                              </button>
+                            )}
                             <button
+                              className={`${classes.actionButton} ${classes.theme1}`}
+                              onClick={() => {
+                                accountStatement(row.username, row.usertype);
+                              }}
+                            >
+                              S
+                            </button>
+                            <button
+                              className={`${classes.actionButton} ${classes.theme2}`}
+                            >
+                              PL
+                            </button>
+                            {row.usertype === "5" ? (
+                              <button
+                                className={`${classes.actionButton} ${classes.theme3}`}
+                                onClick={() => {
+                                  modalChange(
+                                    "viewinfo",
+                                    row.username,
+                                    row.usertype,
+                                    row.balance,
+                                    row.uplink,
+                                    row.winnings,
+                                    row.commission
+                                  );
+                                }}
+                              >
+                                I
+                              </button>
+                            ) : null}
+                            <button
+                              className={`${classes.actionButton} ${classes.theme4}`}
                               onClick={() => {
                                 modalChange(
-                                  "addChild",
+                                  "password",
                                   row.username,
                                   row.usertype,
                                   row.balance,
                                   row.uplink
                                 );
                               }}
-                              className={`${classes.actionButton}`}
                             >
-                              A
+                              P
                             </button>
-                          )}
-                          <button
-                            className={`${classes.actionButton} ${classes.theme1}`}
-                            onClick={() => {
-                              accountStatement(row.username, row.usertype);
-                            }}
-                          >
-                            S
-                          </button>
-                          <button
-                            className={`${classes.actionButton} ${classes.theme2}`}
-                          >
-                            PL
-                          </button>
-                          {row.usertype === "5" ? (
                             <button
-                              className={`${classes.actionButton} ${classes.theme3}`}
                               onClick={() => {
                                 modalChange(
-                                  "viewinfo",
+                                  "deposit",
+                                  row.username,
+                                  row.usertype,
+                                  row.balance,
+                                  row.uplink
+                                );
+                              }}
+                              className={`${classes.actionButton} ${classes.theme5}`}
+                            >
+                              D
+                            </button>
+                            <button
+                              onClick={() => {
+                                modalChange(
+                                  "withdraw",
+                                  row.username,
+                                  row.usertype,
+                                  row.balance,
+                                  row.uplink
+                                );
+                              }}
+                              className={`${classes.actionButton} ${classes.theme6}`}
+                            >
+                              W
+                            </button>
+                            <button
+                              onClick={() => {
+                                modalChange(
+                                  "fullname",
+                                  row.username,
+                                  row.balance,
+                                  row.uplink
+                                );
+                              }}
+                              className={`${classes.actionButton} ${classes.theme7}`}
+                            >
+                              C
+                            </button>
+                            <button
+                              onClick={() => {
+                                history.push("/userActivity/" + row.username);
+                              }}
+                              className={`${classes.actionButton} ${classes.theme8}`}
+                            >
+                              L
+                            </button>
+                          </TableCell>
+                        ) : column.id === "se" ? (
+                          <TableCell
+                            key={column.id}
+                            align="center"
+                            padding="none"
+                          >
+                            <button
+                              className={`${classes.actionButton} ${classes.theme1}`}
+                              onClick={() => {
+                                modalChange(
+                                  "settlement",
                                   row.username,
                                   row.usertype,
                                   row.balance,
                                   row.uplink,
-                                  row.winnings,
-                                  row.commission
+                                  row.winnings
                                 );
                               }}
                             >
-                              I
+                              SE
                             </button>
-                          ) : null}
-                          <button
-                            className={`${classes.actionButton} ${classes.theme4}`}
-                            onClick={() => {
-                              modalChange(
-                                "password",
-                                row.username,
-                                row.usertype,
-                                row.balance,
-                                row.uplink
-                              );
-                            }}
+                          </TableCell>
+                        ) : column.id === "username" && row.usertype !== "5" ? (
+                          <TableCell
+                            key={column.id}
+                            align="center"
+                            padding="none"
                           >
-                            P
-                          </button>
-                          <button
-                            onClick={() => {
-                              modalChange(
-                                "deposit",
-                                row.username,
-                                row.usertype,
-                                row.balance,
-                                row.uplink
-                              );
-                            }}
-                            className={`${classes.actionButton} ${classes.theme5}`}
-                          >
-                            D
-                          </button>
-                          <button
-                            onClick={() => {
-                              modalChange(
-                                "withdraw",
-                                row.username,
-                                row.usertype,
-                                row.balance,
-                                row.uplink
-                              );
-                            }}
-                            className={`${classes.actionButton} ${classes.theme6}`}
-                          >
-                            W
-                          </button>
-                          <button
-                            onClick={() => {
-                              modalChange(
-                                "fullname",
-                                row.username,
-                                row.balance,
-                                row.uplink
-                              );
-                            }}
-                            className={`${classes.actionButton} ${classes.theme7}`}
-                          >
-                            C
-                          </button>
-                          <button
-                            onClick={() => {
-                              history.push("/userActivity/" + row.username);
-                            }}
-                            className={`${classes.actionButton} ${classes.theme8}`}
-                          >
-                            L
-                          </button>
-                        </TableCell>
-                      ) : column.id === "se" ? (
-                        <TableCell
-                          key={column.id}
-                          align="center"
-                          padding="none"
-                        >
-                          <button
-                            className={`${classes.actionButton} ${classes.theme1}`}
-                            onClick={() => {
-                              modalChange(
-                                "settlement",
-                                row.username,
-                                row.usertype,
-                                row.balance,
-                                row.uplink,
-                                row.winnings
-                              );
-                            }}
-                          >
-                            SE
-                          </button>
-                        </TableCell>
-                      ) : column.id === "username" && row.usertype !== "5" ? (
-                        <TableCell
-                          key={column.id}
-                          align="center"
-                          padding="none"
-                        >
-                          <Link
-                            style={{ cursor: "pointer" }}
-                            to={"/childlist/" + row.username}
+                            <Link
+                              className={classes.linkText}
+                              to={"/childlist/" + row.username}
+                            >
+                              {row[column.id] + "(" + row.fullname + ")"}
+                            </Link>
+                          </TableCell>
+                        ) : column.id === "username" && row.usertype === "5" ? (
+                          <TableCell
+                            key={column.id}
+                            align="center"
+                            padding="none"
                           >
                             {row[column.id] + "(" + row.fullname + ")"}
-                          </Link>
-                        </TableCell>
-                      ) : column.id === "username" && row.usertype === "5" ? (
-                        <TableCell
-                          key={column.id}
-                          align="center"
-                          padding="none"
-                        >
-                          {row[column.id] + "(" + row.fullname + ")"}
-                        </TableCell>
-                      ) : column.id === "exposure" &&
-                        row[column.id] &&
-                        row.usertype === "5" ? (
-                        <TableCell
-                          key={column.id}
-                          align="center"
-                          padding="none"
-                        >
-                          <Button
-                            variant="contained"
-                            onClick={() => {
-                              history.push("/expoBets/" + row.username);
-                            }}
+                          </TableCell>
+                        ) : column.id === "exposure" &&
+                          row[column.id] &&
+                          row.usertype === "5" ? (
+                          <TableCell
+                            key={column.id}
+                            align="center"
+                            padding="none"
                           >
-                            {row[column.id]}
-                          </Button>
-                        </TableCell>
-                      ) : column.id === "bet_suspended" ? (
-                        <TableCell
-                          key={column.id}
-                          align="center"
-                          padding="none"
-                        >
-                          <Switch
-                            checked={row.bet_suspended === 1 ? true : false}
-                            onChange={() => {
-                              toggleBetSuspend(row.username);
-                            }}
-                            color="primary"
-                            name="checkedB"
-                            inputProps={{ "aria-label": "primary checkbox" }}
-                          />
-                        </TableCell>
-                      ) : column.id === "suspended" ? (
-                        <TableCell
-                          key={column.id}
-                          align="center"
-                          padding="none"
-                        >
-                          <Switch
-                            checked={row.suspended === 1 ? true : false}
-                            onChange={() => {
-                              toggleSuspend(row.username);
-                            }}
-                            color="primary"
-                            name="checkedB"
-                            inputProps={{ "aria-label": "primary checkbox" }}
-                          />
-                        </TableCell>
-                      ) : (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === "number"
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[5, 10, 25, 50, 100]}
-        component="div"
-        count={rows ? rows.length : 0}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-      />
-    </Paper>
+                            <button
+                              className="btn btn-primary"
+                              onClick={() => {
+                                history.push("/expoBets/" + row.username);
+                              }}
+                            >
+                              {row[column.id]}
+                            </button>
+                          </TableCell>
+                        ) : column.id === "bet_suspended" ? (
+                          <TableCell
+                            key={column.id}
+                            align="center"
+                            padding="none"
+                          >
+                            <Switch
+                              checked={row.bet_suspended === 1 ? true : false}
+                              onChange={() => {
+                                toggleBetSuspend(row.username);
+                              }}
+                              color="primary"
+                              name="checkedB"
+                              inputProps={{ "aria-label": "primary checkbox" }}
+                            />
+                          </TableCell>
+                        ) : column.id === "suspended" ? (
+                          <TableCell
+                            key={column.id}
+                            align="center"
+                            padding="none"
+                          >
+                            <Switch
+                              checked={row.suspended === 1 ? true : false}
+                              onChange={() => {
+                                toggleSuspend(row.username);
+                              }}
+                              color="primary"
+                              name="checkedB"
+                              inputProps={{ "aria-label": "primary checkbox" }}
+                            />
+                          </TableCell>
+                        ) : (
+                          <TableCell key={column.id} align={column.align}>
+                            {column.format && typeof value === "number"
+                              ? column.format(value)
+                              : value}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  );
+                })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25, 50, 100]}
+          component="div"
+          count={rows ? rows.length : 0}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
+      </Paper>
+    </>
   );
 }

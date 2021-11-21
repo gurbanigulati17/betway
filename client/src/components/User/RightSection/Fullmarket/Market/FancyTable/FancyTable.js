@@ -144,13 +144,19 @@ const Fancy = (props) => {
           </div>
         </div>
         <div className={classes.head}>
+          <div className={`${classes.maxMin} ${classes.maxMinDesktop}`}>
+            Min/Max
+          </div>
+          <div className={`${classes.maxMin} ${classes.maxMinMobile}`}>
+            <span>Min/Max :- </span>
+            <span>{min + "/" + max}</span>
+          </div>
           <div className={[classes.headTitle, classes.titleBack].join(" ")}>
             No
           </div>
           <div className={[classes.headTitle, classes.titleLay].join(" ")}>
             Yes
           </div>
-          <div className={[classes.maxMinTitle].join(" ")}>Min/Max</div>
         </div>
       </>
     );
@@ -186,7 +192,13 @@ const Fancy = (props) => {
     <div className={classes.Exchange}>
       {fancyHead}
       {fancyRow}
-      {isRulesVisible && <Rules open={isRulesVisible} onClose={toggleRules} />}
+      {isRulesVisible && (
+        <Rules
+          open={isRulesVisible}
+          onClose={toggleRules}
+          sportId={props.sport}
+        />
+      )}
     </div>
   );
 };

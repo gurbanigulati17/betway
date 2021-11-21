@@ -17,9 +17,9 @@ import appTheme from "../../../../styles/theme";
 
 const useStyles = makeStyles((theme) => ({
   inplay: {
-    paddingBottom: 80,
+    paddingBottom: 0,
     [theme.breakpoints.down("sm")]: {
-      paddingBottom: 50,
+      paddingBottom: 0,
     },
   },
   root: {

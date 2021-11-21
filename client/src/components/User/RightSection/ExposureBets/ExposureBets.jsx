@@ -15,14 +15,10 @@ import {
   TableSortLabel,
   Paper,
   InputBase,
-  Radio,
-  RadioGroup,
-  FormControlLabel,
-  FormControl,
 } from "@material-ui/core";
 import { useParams } from "react-router";
 
-import appTheme from "../../../../styles/theme";
+import { sectionStyle } from "../../../../utils/common.style";
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -168,141 +164,7 @@ EnhancedTableHead.propTypes = {
   rowCount: PropTypes.number.isRequired,
 };
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-  },
-  visuallyHidden: {
-    border: 0,
-    clip: "rect(0 0 0 0)",
-    height: 1,
-    margin: -1,
-    overflow: "hidden",
-    padding: 0,
-    position: "absolute",
-    top: 20,
-    width: 1,
-  },
-  search: {
-    position: "relative",
-    border: "1px solid #d2d6de",
-    float: "right",
-    margin: "5px 0",
-    width: 220,
-    "& input": {
-      width: "100%",
-      paddingLeft: 40,
-    },
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 1),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  actionButton: {
-    margin: 3,
-    cursor: "pointer",
-  },
-  inputRoot: {
-    color: "inherit",
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
-  },
-  box: {
-    display: "grid",
-    gridTemplateColumns: "95% 5%",
-    [theme.breakpoints.down("sm")]: {
-      gridTemplateColumns: "90% 10%",
-    },
-  },
-  back: {
-    marginTop: 10,
-    float: "right",
-  },
-  paper: {
-    width: "100%",
-    marginBottom: theme.spacing(2),
-    borderRadius: 0,
-    backgroundColor: "#f5f5f5",
-    padding: 10,
-    [theme.breakpoints.down("sm")]: {
-      margin: -10,
-      width: "initial",
-      padding: 20,
-    },
-  },
-  container: {
-    overflow: "auto",
-    maxHeight: 440,
-  },
-  table: {
-    overflow: "scroll",
-    border: "solid 1px #bdc3c7",
-    backgroundColor: "#FFFFFF",
-    "& thead th": {
-      padding: "6px 12px",
-      color: "rgba(0,0,0,.54)",
-      font: '600 12px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
-      backgroundColor: "#f5f7f7",
-      position: "relative",
-    },
-    "& thead th::before": {
-      borderRight: "1px solid rgba(189,195,199,.5)",
-      content: "''",
-      height: 16,
-      marginTop: 8,
-      position: "absolute",
-      left: 0,
-      textIndent: 2000,
-      top: 0,
-    },
-    "& thead th:first-child::before": {
-      content: "none",
-    },
-    "& tbody td": {
-      font: '400 12px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
-      padding: "0 12px",
-      color: "rgba(0,0,0)",
-      lineHeight: "32px",
-      borderBottom: "solid 1px #d9dcde",
-    },
-    "& tbody td p": {
-      margin: 0,
-    },
-    "& tbody td button": {
-      marginTop: "5px !important",
-      marginBottom: "5px !important",
-    },
-  },
-  titlePanel: {
-    background: appTheme.colors.primary,
-    color: appTheme.colors.textLight,
-    fontWeight: 700,
-    border: 0,
-    margin: "-10px -10px 0 -10px",
-    minHeight: 1,
-    padding: 10,
-    justifyContent: "space-between",
-  },
-  title: {
-    marginRight: "10px",
-    fontSize: 14,
-    fontFamily: "inherit",
-    textTransform: "uppercase",
-    fontWeight: 700,
-  },
-}));
+const useStyles = makeStyles(sectionStyle);
 
 export default function ExposureBets() {
   const classes = useStyles();
@@ -441,31 +303,28 @@ export default function ExposureBets() {
   ];
 
   return (
-    <Paper className={classes.paper}>
-      <div className={classes.titlePanel}>
-        <span className={classes.title}>Current Bets</span>
+    <>
+      <div className={classes.card}>
+        {!!filter?.length && (
+          <select
+            value={value}
+            onChange={handleChange}
+            className="formInputTheme"
+          >
+            {filter.map((obj) => {
+              return (
+                <option value={obj.value} key={obj.value}>
+                  {obj.label}
+                </option>
+              );
+            })}
+          </select>
+        )}
       </div>
-      <FormControl component="fieldset" className={classes.form}>
-        <RadioGroup
-          row
-          aria-label="gender"
-          name="gender1"
-          value={value}
-          onChange={handleChange}
-        >
-          {filter.map((obj) => {
-            return (
-              <FormControlLabel
-                value={obj.value}
-                control={<Radio />}
-                label={obj.label}
-                key={obj.value}
-              />
-            );
-          })}
-        </RadioGroup>
-      </FormControl>
       <Paper className={classes.paper}>
+        <div className={classes.titlePanel}>
+          <span className={classes.title}>Current Bets</span>
+        </div>
         <div className={classes.search}>
           <div className={classes.searchIcon}>
             <SearchIcon />
@@ -561,6 +420,6 @@ export default function ExposureBets() {
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </Paper>
-    </Paper>
+    </>
   );
 }

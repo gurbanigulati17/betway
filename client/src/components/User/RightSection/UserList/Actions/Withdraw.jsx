@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-  Button,
   Grid,
   Table,
   TableBody,
@@ -153,11 +152,11 @@ const Withdraw = (props) => {
                 {touched.password && errors.password}
               </Grid>
             </Grid>
-            <TableContainer>
+            <TableContainer className={classes.tableContainer}>
               <Table>
                 <TableBody>
                   <TableRow>
-                    <TableCell>
+                    <TableCell className={classes.tdTitle}>
                       {props.uplink_type === "1"
                         ? "Coins_withdrawn"
                         : props.uplink + " Free Chips"}
@@ -169,11 +168,13 @@ const Withdraw = (props) => {
                     </TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>{props.downlink} Balance</TableCell>
+                    <TableCell className={classes.tdTitle}>
+                      {props.downlink} Balance
+                    </TableCell>
                     <TableCell>{props.userBalance}</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>
+                    <TableCell className={classes.tdTitle}>
                       {props.uplink_type === "1"
                         ? " New Coins_withdrawn"
                         : props.uplink + " New Free Chips"}
@@ -185,7 +186,9 @@ const Withdraw = (props) => {
                     </TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>{props.downlink} New Balance</TableCell>
+                    <TableCell className={classes.tdTitle}>
+                      {props.downlink} New Balance
+                    </TableCell>
                     <TableCell>{props.userBalance - values.chips}</TableCell>
                   </TableRow>
                 </TableBody>
@@ -193,16 +196,16 @@ const Withdraw = (props) => {
             </TableContainer>
           </div>
           <div className="footer">
-            <Button
+            <button
               disabled={isSubmitting}
               type="submit"
               variant="contained"
               color="primary"
               autoFocus
-              className="btn btn-info"
+              className="btn btn-primary btn-extra"
             >
               Withdraw
-            </Button>
+            </button>
           </div>
         </form>
       )}
@@ -227,6 +230,18 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "inherit",
     textTransform: "uppercase",
     fontWeight: 700,
+  },
+  tdTitle: {
+    font: "700 14px Tahoma, Helvetica, sans-serif",
+    color: "#243a48",
+    padding: "8px 10px",
+    position: "relative",
+    borderBottom: "solid 1px #CCC",
+    backgroundColor: "#e4e4e4",
+    width: "50%",
+  },
+  tableContainer: {
+    marginTop: 30,
   },
 }));
 

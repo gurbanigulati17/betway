@@ -150,7 +150,11 @@ const MarketTable = (props) => {
         </div>
       </div>
       {marketRow}
-      <Rules open={isRulesVisible} onClose={toggleRules} />
+      <Rules
+        open={isRulesVisible}
+        onClose={toggleRules}
+        sportId={props.sport}
+      />
     </div>
   );
 };

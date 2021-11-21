@@ -33,6 +33,7 @@
 .betGrid {
   padding: 0;
   border-top: 1px solid #7e97a7;
+  position: relative;
 }
 
 .betGridAttributes {

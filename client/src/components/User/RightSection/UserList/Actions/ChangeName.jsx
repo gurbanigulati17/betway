@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Grid, TextField } from "@material-ui/core";
+import { Grid, TextField } from "@material-ui/core";
 import axios from "../../../../../axios-instance/backendAPI";
 import { Formik } from "formik";
 import * as yup from "yup";
@@ -110,15 +110,13 @@ const ChangeName = (props) => {
             </Grid>
           </div>
           <div className="footer">
-            <Button
+            <button
               disabled={isSubmitting}
               type="submit"
-              variant="contained"
-              color="primary"
-              className="btn btn-info"
+              className="btn btn-primary btn-extra"
             >
               Submit
-            </Button>
+            </button>
           </div>
         </form>
       )}

@@ -2,6 +2,7 @@
   margin: 0 auto;
   padding: 10px;
   overflow: hidden;
+  border-top: 1px solid #7e97a7;
 }
 
 .restrict {
@@ -59,6 +60,15 @@
   border: 1px solid #aaa;
   background: linear-gradient(-180deg, #fff 0, #eee 89%);
   color: #1f71ab;
+  border-radius: 8px;
+}
+
+.orderQuantity button:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.orderQuantity button:last-child {
+  border-radius: 0 8px 8px 0;
 }
 
 .odds span {
@@ -122,8 +132,12 @@
   padding: 0 5px;
 }
 
-.placeCancel button,
-.placeBet button {
+.action > div button {
+  width: 100%;
+}
+
+.cancel,
+.place {
   text-align: center;
   font-size: 11px;
   font-weight: bold;
@@ -133,16 +147,16 @@
   cursor: pointer;
   display: block;
   border-radius: 4px;
-  width: 100%;
-  height: 35px;
+  height: 40px;
+  min-width: 110px;
 }
 
-.placeBet button {
+.place {
   background: linear-gradient(-180deg, #315195 0%, #14213d 100%);
   color: #fff;
 }
 
-.placeBet button:disabled {
+.place:disabled {
   pointer-events: none;
   background: #c5c3c3;
   color: #e6dfcd;
@@ -154,4 +168,31 @@
 
 .lay {
   background-color: #f6e6ea;
+}
+
+@media screen and (min-width: 768px) {
+  .orderPanel {
+    justify-content: flex-end;
+  }
+
+  .orderPanel > * {
+    margin-left: 30px;
+  }
+
+  .stakeElement {
+    flex: 1 1 auto;
+  }
+
+  .orderQuantity,
+  .odds {
+    width: auto;
+  }
+
+  .action {
+    display: none;
+  }
+
+  .stakes {
+    padding: 5px 0 0;
+  }
 }

@@ -207,25 +207,20 @@ const NewUser = (props) => {
             </Grid>
           </div>
           <div className="footer">
-            <Button
+            <button
               disabled={isSubmitting}
-              type="submit"
-              variant="contained"
               color="primary"
-              autoFocus
               style={{ marginRight: 10 }}
-              className="btn btn-success"
+              className="btn btn-primary btn-extra"
             >
               Add
-            </Button>
-            <Button
+            </button>
+            <button
               onClick={props.handleClose}
-              variant="contained"
-              color="secondary"
-              className="btn btn-danger"
+              className="btn btn-secondary btn-extra"
             >
               Cancel
-            </Button>
+            </button>
           </div>
         </form>
       )}

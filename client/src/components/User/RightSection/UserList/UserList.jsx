@@ -11,12 +11,9 @@ import {
   TablePagination,
   TableRow,
   TableSortLabel,
-  Toolbar,
-  Typography,
   Paper,
   InputBase,
   Switch,
-  Button,
 } from "@material-ui/core";
 import Modal from "../../../UI/Modal/Modal";
 import SearchIcon from "@material-ui/icons/Search";
@@ -34,7 +31,7 @@ import "alertifyjs/build/css/alertify.css";
 import BetSpinner from "../../../UI/Spinner/BetSpinner";
 import ChangeName from "./Actions/ChangeName";
 
-import appTheme from "../../../../styles/theme";
+import { toolbarStyle, sectionStyle } from "../../../../utils/common.style";
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -61,6 +58,9 @@ function stableSort(array, comparator) {
   });
   return stabilizedThis?.map((el) => el[0]);
 }
+
+const useStyles = makeStyles((theme) => sectionStyle(theme));
+const useToolbarStyles = makeStyles((theme) => toolbarStyle(theme));
 
 function EnhancedTableHead(props) {
   const params = useParams();
@@ -181,231 +181,12 @@ EnhancedTableHead.propTypes = {
   orderBy: PropTypes.string.isRequired,
   rowCount: PropTypes.number.isRequired,
 };
-
-const useToolbarStyles = makeStyles((theme) => ({
-  "@global": {
-    "*::-webkit-scrollbar": {
-      width: "0.4em",
-    },
-    "*::-webkit-scrollbar-track": {
-      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-    },
-    "*::-webkit-scrollbar-thumb": {
-      backgroundColor: "rgba(0,0,0,.1)",
-      outline: "1px solid slategrey",
-    },
-  },
-  root: {
-    background: appTheme.colors.primary,
-    color: appTheme.colors.textLight,
-    fontWeight: 700,
-    border: 0,
-    margin: "-10px -10px 0 -10px",
-    minHeight: 1,
-    padding: 10,
-    justifyContent: "space-between",
-  },
-  paper: {
-    position: "absolute",
-    maxWidth: 450,
-    margin: "auto",
-    backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
-    boxShadow: theme.shadows[5],
-    padding: " 0 25px 10px",
-  },
-  bigpaper: {
-    backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
-    boxShadow: theme.shadows[5],
-    height: "500px",
-    overflowY: "scroll",
-    position: "relative",
-  },
-  title: {
-    marginRight: "10px",
-    fontSize: 14,
-    fontFamily: "inherit",
-    textTransform: "uppercase",
-    fontWeight: 700,
-  },
-  modal: {
-    marginLeft: "430px",
-    marginTop: "115px",
-    [theme.breakpoints.down("sm")]: {
-      margin: "0",
-    },
-  },
-  mod: {
-    margin: "0px 80px",
-    [theme.breakpoints.down("sm")]: {
-      margin: "0",
-    },
-  },
-  gridy: {
-    marginBottom: "5px",
-  },
-}));
-
 const users = [
   { type: "Seniorsuper", usertype: "2" },
   { type: "Supermaster", usertype: "3" },
   { type: "Master", usertype: "4" },
   { type: "Client", usertype: "5" },
 ];
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-  },
-  paper: {
-    width: "100%",
-    marginBottom: theme.spacing(2),
-    borderRadius: 0,
-    backgroundColor: "#f5f5f5",
-    padding: 10,
-    [theme.breakpoints.down("sm")]: {
-      margin: -10,
-      width: "initial",
-      padding: 20,
-    },
-  },
-  loader: {
-    display: "flex",
-    justifyContent: "center",
-    width: "600%",
-    [theme.breakpoints.down("sm")]: {
-      width: "200%",
-    },
-  },
-  visuallyHidden: {
-    border: 0,
-    clip: "rect(0 0 0 0)",
-    height: 1,
-    margin: -1,
-    overflow: "hidden",
-    padding: 0,
-    position: "absolute",
-    top: 20,
-    width: 1,
-  },
-  search: {
-    position: "relative",
-    border: "1px solid #d2d6de",
-    float: "right",
-    margin: "5px 0",
-    width: 220,
-    "& input": {
-      width: "100%",
-      paddingLeft: 40,
-    },
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 1),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  actionButton: {
-    margin: 3,
-    cursor: "pointer",
-    border: 0,
-    background: "#1a8ee1",
-    borderRadius: 2,
-    color: "#FFF",
-    padding: "3px 7px",
-    display: "inline-block",
-  },
-  theme1: {
-    background: "#0cb164",
-  },
-  theme2: {
-    background: "#d62d45",
-  },
-  theme3: {
-    background: "#d3d62d",
-  },
-  theme4: {
-    background: "#2ca7c3",
-  },
-  theme5: {
-    background: "#a5c32c",
-  },
-  theme6: {
-    background: "#c3952c",
-  },
-  theme7: {
-    background: "#dc8970",
-  },
-  theme8: {
-    background: "#c7ab9b",
-  },
-  theme9: {
-    background: "#1ae1cf",
-  },
-  inputRoot: {
-    color: "inherit",
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
-  },
-  container: {
-    overflow: "auto",
-    maxHeight: 440,
-  },
-  sortLabel: {
-    color: "rgba(0,0,0,.54) !important",
-    whiteSpace: "nowrap",
-    "& > svg": {
-      color: "inherit !important",
-    },
-  },
-  table: {
-    overflow: "scroll",
-    border: "solid 1px #bdc3c7",
-    backgroundColor: "#FFFFFF",
-    "& thead th": {
-      padding: "6px 12px",
-      color: "rgba(0,0,0,.54)",
-      font: '600 12px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
-      backgroundColor: "#f5f7f7",
-      position: "relative",
-    },
-    "& thead th::before": {
-      borderRight: "1px solid rgba(189,195,199,.5)",
-      content: "''",
-      height: 16,
-      marginTop: 8,
-      position: "absolute",
-      left: 0,
-      textIndent: 2000,
-      top: 0,
-    },
-    "& tbody td": {
-      font: '400 12px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
-      padding: "0 12px",
-      color: "rgba(0,0,0)",
-      lineHeight: "32px",
-      borderBottom: "solid 1px #d9dcde",
-    },
-    "& tbody td p": {
-      margin: 0,
-    },
-    "& tbody td button": {
-      marginTop: "5px !important",
-      marginBottom: "5px !important",
-    },
-  },
-}));
 
 export default function UserList() {
   const classes = useStyles();
@@ -438,6 +219,8 @@ export default function UserList() {
   };
   const params = useParams();
   const history = useHistory();
+
+  let usertype = params.usertype;
 
   const columns = [
     {
@@ -590,7 +373,6 @@ export default function UserList() {
             handleClose={handleClose}
             username={action.username}
             commission={action.commission}
-            paper={classes.bigpaper}
             updateRows={updateRows}
           />
         );
@@ -619,42 +401,14 @@ export default function UserList() {
         break;
     }
     return (
-      <>
-        <Toolbar className={classes.root}>
-          <Typography
-            className={classes.title}
-            variant="h6"
-            id="tableTitle"
-            component="div"
-          >
-            {users
-              .filter((obj) => {
-                return obj.usertype === params.usertype;
-              })
-              .map((obj) => obj.type)}{" "}
-            listing
-          </Typography>
-          {show && (
-            <Button
-              variant="contained"
-              onClick={() => {
-                modalChange("add", "");
-              }}
-              className="btn btn-success"
-            >
-              Add User
-            </Button>
-          )}
-        </Toolbar>
-        <Modal
-          open={open}
-          bigmodal={bigmodal}
-          onClose={handleClose}
-          isOuterStructure
-        >
-          {toRender}
-        </Modal>
-      </>
+      <Modal
+        open={open}
+        bigmodal={bigmodal}
+        onClose={handleClose}
+        isOuterStructure
+      >
+        {toRender}
+      </Modal>
     );
   };
 
@@ -838,10 +592,23 @@ export default function UserList() {
   //const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   return (
-    <div className={classes.root}>
-      <Paper className={classes.paper}>
-        <EnhancedTableToolbar />
+    <>
+      <div className={classes.card}>
         <HelperLabel />
+      </div>
+
+      <Paper className={classes.paper}>
+        <div className={classes.titlePanel}>
+          <span className={classes.title}>
+            {users
+              .filter((obj) => {
+                return parseFloat(obj.usertype) === parseFloat(usertype) + 1;
+              })
+              .map((obj) => obj.type)}{" "}
+            listing
+          </span>
+        </div>
+        <EnhancedTableToolbar />
         <div className={classes.search}>
           <div className={classes.searchIcon}>
             <SearchIcon />
@@ -1045,7 +812,7 @@ export default function UserList() {
                             padding="none"
                           >
                             <Link
-                              style={{ cursor: "pointer" }}
+                              className={classes.linkText}
                               to={"/childlist/" + row.username}
                             >
                               {row[column.id] + "(" + row.fullname + ")"}
@@ -1059,15 +826,15 @@ export default function UserList() {
                             align="right"
                             padding="none"
                           >
-                            <Button
-                              variant="contained"
+                            <button
+                              className="btn btn-primary"
                               onClick={() => {
                                 history.push("/expoBets/" + row.username);
                               }}
-                              className="btn btn-info"
+                              className="btn btn-primary"
                             >
                               {row[column.id]}
-                            </Button>
+                            </button>
                           </TableCell>
                         ) : column.id === "username" && row.usertype === "5" ? (
                           <TableCell
@@ -1090,7 +857,9 @@ export default function UserList() {
                               }}
                               color="primary"
                               name="checkedB"
-                              inputProps={{ "aria-label": "primary checkbox" }}
+                              inputProps={{
+                                "aria-label": "primary checkbox",
+                              }}
                             />
                           </TableCell>
                         ) : column.id === "suspended" ? (
@@ -1106,7 +875,9 @@ export default function UserList() {
                               }}
                               color="primary"
                               name="checkedB"
-                              inputProps={{ "aria-label": "primary checkbox" }}
+                              inputProps={{
+                                "aria-label": "primary checkbox",
+                              }}
                             />
                           </TableCell>
                         ) : (
@@ -1133,6 +904,6 @@ export default function UserList() {
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </Paper>
-    </div>
+    </>
   );
 }

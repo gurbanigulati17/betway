@@ -50,6 +50,18 @@ const PlaceOrder = ({
           </div>
         )}
         <div className={classes.orderPanel}>
+          <button
+            className={classes.cancel}
+            onClick={() => {
+              if (clearProfitLoss) {
+                clearProfitLoss();
+              }
+              handleClick(null);
+              setStake("");
+            }}
+          >
+            Cancel
+          </button>
           <div className={classes.odds}>{odds && <span>{odds}</span>}</div>
           <div className={classes.orderQuantity}>
             <button className={classes.dec} onClick={decStake}>
@@ -66,6 +78,15 @@ const PlaceOrder = ({
               <i className="fa fa-plus"></i>
             </button>
           </div>
+          <button
+            disabled={disabled}
+            onClick={placeBet}
+            className={`${classes.place} ${
+              disabled ? classes.inactiveBet : ""
+            }`}
+          >
+            <span>Place Bet</span>
+          </button>
         </div>
         <div className={classes.stakes}>
           {stakes.map((stake) => {

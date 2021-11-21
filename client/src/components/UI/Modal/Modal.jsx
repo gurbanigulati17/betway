@@ -8,8 +8,6 @@ export default function TransitionsModal(props) {
   const { children, open, onClose, bigmodal, title, footer, isOuterStructure } =
     props;
 
-  console.log(isOuterStructure);
-
   const useStyles = makeStyles((theme) => ({
     modal: {
       width: "100%",
@@ -26,9 +24,13 @@ export default function TransitionsModal(props) {
       },
     },
     head: {
-      padding: 10,
-      backgroundColor: "#4a4a4a",
-      color: "#fff",
+      textAlign: "center",
+      backgroundColor: "#eee",
+      margin: 0,
+      fontSize: 16,
+      color: "#243a48",
+      fontWeight: 700,
+      padding: 8,
       "& h3": {
         margin: 0,
       },
@@ -54,6 +56,12 @@ export default function TransitionsModal(props) {
     },
     structureCarrier: {
       position: "relative",
+      borderRadius: 8,
+      overflow: "hidden",
+      border: "1px solid rgba(0,0,0,.2)",
+    },
+    close: {
+      cursor: "pointer",
     },
   }));
 

@@ -61,22 +61,24 @@ const Header = ({ className, children }) => {
               {isAdmin ? (
                 <>
                   <li>
-                    <span className="summary-title">Chips_G : </span>
+                    <span className="summary-title">Chips_G: </span>
                     <span className="summary-data">{user.coins_generated}</span>
                   </li>
                   <li>
-                    <span className="summary-title">Chips_W : </span>
+                    <span className="summary-title">Chips_W: </span>
                     <span className="summary-data">{user.coins_withdrawn}</span>
                   </li>
                 </>
               ) : (
                 <>
                   <li>
-                    <span className="summary-title">Exposure : </span>
-                    <span className="summary-data">{user.exposure}</span>
+                    <span className="summary-title">Exposure: </span>
+                    <span className="summary-data exposure">
+                      ({user.exposure})
+                    </span>
                   </li>
                   <li>
-                    <span className="summary-title">Balance : </span>
+                    <span className="summary-title">Balance: </span>
                     <span className="summary-data">{user.balance}</span>
                   </li>
                 </>

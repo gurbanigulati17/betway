@@ -13,9 +13,9 @@ import Event from "./Event/Event";
 
 const useStyles = makeStyles((theme) => ({
   dashboard: {
-    paddingBottom: 80,
+    paddingBottom: 0,
     [theme.breakpoints.down("sm")]: {
-      paddingBottom: 50,
+      paddingBottom: 0,
     },
   },
   tab: {

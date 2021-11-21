@@ -66,7 +66,8 @@ export default function BetSlip(props) {
       padding: 10,
       justifyContent: "space-between",
       marginBottom: 0,
-      textTransform: "uppercase",
+      borderRadius: "8px 8px 0 0",
+      fontSize: 12,
     },
     root: {
       width: "98%",
