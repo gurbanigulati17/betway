@@ -66,6 +66,7 @@ export const sectionStyle = (theme) => ({
     margin: "-21px -21px 20px -21px",
     minHeight: 1,
     padding: 10,
+    display: "flex",
     justifyContent: "space-between",
     [theme.breakpoints.down("sm")]: {
       margin: "-11px -11px 10px -11px",
