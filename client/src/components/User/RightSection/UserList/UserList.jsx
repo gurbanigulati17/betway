@@ -607,6 +607,16 @@ export default function UserList() {
               .map((obj) => obj.type)}{" "}
             listing
           </span>
+          {show && (
+            <button
+              className="btn btn-primary"
+              onClick={() => {
+                modalChange("add", "");
+              }}
+            >
+              Add User
+            </button>
+          )}
         </div>
         <EnhancedTableToolbar />
         <div className={classes.search}>

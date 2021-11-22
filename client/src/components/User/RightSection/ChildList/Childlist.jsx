@@ -29,10 +29,9 @@ import "alertifyjs/build/css/alertify.css";
 import BetSpinner from "../../../UI/Spinner/BetSpinner";
 import ChangeName from "../UserList/Actions/ChangeName";
 
-import { toolbarStyle, sectionStyle } from "../../../../utils/common.style";
+import { sectionStyle } from "../../../../utils/common.style";
 
 const useStyles = makeStyles((theme) => sectionStyle(theme));
-const useToolbarStyles = makeStyles((theme) => toolbarStyle(theme));
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -256,7 +255,6 @@ export default function ChildList() {
   }
 
   const EnhancedTableToolbar = () => {
-    const classes = useToolbarStyles();
     let toRender = null;
 
     switch (action.toRender) {
